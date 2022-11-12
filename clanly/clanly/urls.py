@@ -1,4 +1,4 @@
-"""joko URL Configuration
+"""clanly URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.1/topics/http/urls/
@@ -18,11 +18,16 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+from app import views
+
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", include("core.urls")),
-
+    path('', views.index, name='index'),
+    path('settings/', views.settings, name='settings'),
+    path('signup/', views.signup, name='signup'),
+    path('signin/', views.signin, name='signin'),
+    path('logout/', views.logout, name='logout'),
 ]       
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
