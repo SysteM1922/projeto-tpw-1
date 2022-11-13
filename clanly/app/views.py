@@ -12,9 +12,7 @@ from django.contrib.auth.decorators import login_required
 def index(request):
     return render(request, 'index.html')
 
-
 def signup(request):
-    
     if request.method == 'POST':
         username = request.POST['username']
         email = request.POST['email']
@@ -41,7 +39,7 @@ def signup(request):
                 new_profile = Profile.objects.create(user=user_model, id_user=user_model.id)
                 new_profile.save()
                 # this is not working
-                return redirect('settings')
+                return render(request,'settings.html')
         else:
             messages.info(request, 'Password Not Matching')
             return redirect('signup')
