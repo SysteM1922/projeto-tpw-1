@@ -47,24 +47,29 @@ def signup(request):
         return render(request, 'signup.html')
 
 def signin(request):
-    
-    if request.method == 'POST':
-        username = request.POST.get('username', None)
-        password = request.POST.get('password', None)
 
-        user = auth.authenticate(username=username, password=password)
+    if not request.user.is_authenticated:
 
-        if user is not None:
-            print("user : ", user)
-            auth.login(request, user)
-            return redirect('/')
+        if request.method == 'POST':
+            username = request.POST.get('username', None)
+            password = request.POST.get('password', None)
+
+            user = auth.authenticate(username=username, password=password)
+
+            if user is not None:
+                print("user : ", user)
+                auth.login(request, user)
+                return redirect('/')
+            else:
+                print("invalid")
+                messages.info(request, 'Credentials Invalid')
+                return redirect('signin')
+
         else:
-            print("invalid")
-            messages.info(request, 'Credentials Invalid')
-            return redirect('signin')
+            return render(request, 'signin.html')
 
     else:
-        return render(request, 'signin.html')
+        return redirect('settings')
 
 @login_required(login_url='signin')
 def logout(request):
