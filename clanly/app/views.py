@@ -71,7 +71,7 @@ def logout(request):
     auth.logout(request)
     return redirect('signin')
 
-
+@login_required(login_url='signin')
 def settings(request):
     user = request.user
     #print("user : ", user)
