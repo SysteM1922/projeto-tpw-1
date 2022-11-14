@@ -23,8 +23,9 @@
     href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
 
 
-  <div class="pt-6 bg-purple-500 h-screen mt-auto">
-    <div class="w-full lg:w-6/12 px-4 mx-auto mt-10"> <img src="{% static 'images/logo-no-background.png' %}"> </div>
+  <div class="pt-6 bg-purple-500 h-80% mt-auto pb-10">
+    <div class="w-full lg:w-6/12 px-4 mx-auto mt-5 size"> <img src="{% static 'images/logo-no-background.png' %}">
+    </div>
     <div class="w-full lg:w-6/12 px-4 mx-auto mt-10">
       <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
         <div class="rounded-t bg-white mb-0 px-6 py-6">
@@ -35,43 +36,43 @@
 
           </div>
         </div>
-        <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
-           <form action="" method="POST">
-              {% csrf_token %}
+        <div class="flex-auto px-4 lg:px-10 py-10 pt-0 ">
+          <form action="" method="POST">
+            {% csrf_token %}
             <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
               User Information
             </h6>
+            <div class="mx-auto text-right">
               <button
-              class="bg-purple-500 text-white active:bg-purple-500 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-              type="submit">
-              Sign In
-            </button>
+                class="bg-purple-500 text-white active:bg-purple-500 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                type="submit">
+                Sign In
+              </button>
+            </div>
             <div class="flex flex-wrap">
-                <div class="w-full lg:w-6/12 px-4">
-                  <div class="relative w-full mb-3">
-                    <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
-                      Username
-                    </label>
-                    <input type="text"
-                        name="username"
-                      class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                      placeholder="lucky.jesse">
-                  </div>
+              <div class="w-full lg:w-6/12 px-4">
+                <div class="relative w-full mb-3">
+                  <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+                    Username
+                  </label>
+                  <input type="text" name="username"
+                    class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                    placeholder="lucky.jesse">
                 </div>
+              </div>
               <div class="w-full lg:w-6/12 px-4">
                 <div class="relative w-full mb-3">
                   <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
                     Password
                   </label>
-                  <input type="password"
-                         name="password"
+                  <input type="password" name="password"
                     class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     placeholder="Password">
                 </div>
               </div>
             </div>
           </form>
-          <div class="mx-auto mt-3 mb-0">
+          <div class="mx-auto mt-3 mb-0 text-center">
             <a href="{% url 'signup' %}" class="text-blueGray-600">Sign Up</a>
           </div>
         </div>
