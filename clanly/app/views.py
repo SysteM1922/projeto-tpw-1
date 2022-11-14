@@ -108,7 +108,8 @@ def login(request):
     return render(request, 'login.html')
 
 
-
+def clan(request):
+    return render(request, 'clan.html')
 
 
 
