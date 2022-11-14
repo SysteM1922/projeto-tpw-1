@@ -2,11 +2,9 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="{% static 'assets/images/favicon.png' %}" rel="icon" type="image/png">
   <title>Settings</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,9 +12,7 @@
   <link rel="stylesheet" href="{% static 'assets/css/uikit.css' %}">
   <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
   <link rel="stylesheet" href="{% static 'assets/css/tailwind.css' %}">
-
 </head>
-
 <body>
   <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css">
   <link rel="stylesheet"
@@ -37,7 +33,7 @@
           </div>
         </div>
         <div class="flex-auto px-4 lg:px-10 py-10 pt-0 ">
-          <form action="." method="POST">
+          <form action="" method="POST">
             {% csrf_token %}
             <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
               User Information
@@ -57,7 +53,7 @@
                   </label>
                   <input type="text" name="username"
                     class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    placeholder="Username">
+                    placeholder="lucky.jesse">
                 </div>
               </div>
               <div class="w-full lg:w-6/12 px-4">
@@ -72,7 +68,7 @@
               </div>
             </div>
           </form>
-          <div class="mx-auto mt-3 mb-0">
+          <div class="mx-auto mt-3 mb-0 text-center">
             <a href="{% url 'signup' %}" class="text-blueGray-600">Sign Up</a>
           </div>
         </div>
@@ -80,5 +76,4 @@
     </div>
   </div>
 </body>
-
 </html>
