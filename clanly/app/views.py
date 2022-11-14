@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
-@login_required(login_url='signin')
+
 def index(request):
     return render(request, 'index.html')
 
@@ -70,7 +70,7 @@ def logout(request):
     auth.logout(request)
     return redirect('signin')
 
-@login_required(login_url='signin')
+
 def settings(request):
     user = request.user
 
@@ -98,6 +98,22 @@ def settings(request):
         return redirect('settings')
 
     return render(request, 'setting.html', {'user_profile': user})
+
+
+def profile(request):
+    user = request.user
+    return render(request, 'profile.html', {'user_profile': user})
+
+def login(request):
+    return render(request, 'login.html')
+
+
+
+
+
+
+
+
 
 
 

@@ -15,133 +15,146 @@
     <link rel="stylesheet" href="{% static 'assets/css/uikit.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/tailwind.css' %}">
+    <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css">
+    <link rel="stylesheet"
+        href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
+
 </head>
 
-<body>
 
-            <header>
-                <div class="header_inner">
-                    <div class="left-side">
-                        <!-- Logo -->
-                        <div id="logo" class=" uk-hidden@s">
-                            <a href="home.html">
-                                <b><h1 style="text-transform: uppercase;">Social Book </h1></b>
-                            </a>
-                        </div>
+<header class="bg-purple-500 border-0">
+    <div class="header_inner">
+        <div class="left-side">
+            <!-- Logo -->
+            <div id="logo" class=" uk-hidden@s">
+                <a href="home.html">
+                    <b>
+                        <h1 style="text-transform: uppercase;">Social Book </h1>
+                    </b>
+                </a>
+            </div>
 
-                        <!--<div class="triger" uk-toggle="target: #wrapper ; cls: sidebar-active">
+            <!--<div class="triger" uk-toggle="target: #wrapper ; cls: sidebar-active">
                             <i class="uil-bars"></i>
                         </div>-->
 
-                        <div class="header_search">
-                            <input type="text" placeholder="Search for community..">
-                            <div class="icon-search">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                                </svg>
+            <div class="header_search">
+                <input type="text" placeholder="Search for community..">
+                <div class="icon-search">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                </div>
+            </div>
+
+        </div>
+        <div class="right-side lg:pr-4">
+            <!-- profile -->
+
+            <a href="#">
+                <img src="{% static 'assets/images/avatars/avatar-2.jpg' %}" class="header-avatar" alt="">
+            </a>
+            <div uk-drop="mode: click;offset:9" class="header_dropdown profile_dropdown border-t">
+                <ul>
+                    <li><a href="settings"> Account setting </a> </li>
+                    <li><a href="explore.html">explore </a> </li>
+                    <li><a href="#"> Help </a> </li>
+                    <li><a href="logout"> Log Out</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</header>
+
+<div class="h-screen w-100% bg-purple-500 pb-20 mb-20">
+    <div class="container m-auto">
+        <!--<h1 class="lg:text-2xl text-lg font-extrabold leading-none text-gray-900 tracking-tight mb-5"> Feed </h1>--->
+
+        <div class="lg:flex justify-center lg:space-x-12 lg:space-y-0 space-y-5">
+            <!-- left sidebar-->
+            <div class="space-y-5 flex-shrink-0 lg:w-8/12">
+                <div class="rounded-md -mx-5 -mt-5"> <img src="{% static 'images/logo-no-background.png' %}"> </div>
+                <!-- post 1-->
+                <div class="bg-white shadow rounded-md  -mx-2 lg:mx-0">
+
+                    <!-- post header-->
+                    <div class="flex justify-between items-center px-4 py-3">
+                        <div class="flex flex-1 items-center space-x-4">
+                            <a href="#">
+                                <div class="bg-gradient-to-tr from-yellow-600 to-pink-600 p-0.5 rounded-full">
+                                    <img src="{% static 'assets/images/avatars/avatar-2.jpg' %}"
+                                        class="bg-gray-200 border border-white rounded-full w-8 h-8">
+                                </div>
+                            </a>
+                            <span class="block capitalize font-semibold "> tomi_ml </span>
+                            {% comment %}<h1>{{user.username}}</h1> {% endcomment %}
+                        </div>
+                        <div>
+                            <a href="#"> <i
+                                    class="icon-feather-more-horizontal text-2xl hover:bg-gray-200 rounded-full p-2 transition -mr-1 "></i>
+                            </a>
+                            <div class="bg-white w-56 shadow-md mx-auto p-2 mt-12 rounded-md text-gray-500 hidden text-base border border-gray-100  "
+                                uk-drop="mode: hover;pos: top-right">
+
+                                <ul class="space-y-1">
+                                    <li>
+                                        <a href="#"
+                                            class="flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md ">
+                                            <i class="uil-share-alt mr-1"></i> Share
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#"
+                                            class="flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md ">
+                                            <i class="uil-edit-alt mr-1"></i> Edit Post
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#"
+                                            class="flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md ">
+                                            <i class="uil-comment-slash mr-1"></i> Disable comments
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#"
+                                            class="flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md ">
+                                            <i class="uil-favorite mr-1"></i> Add favorites
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <hr class="-mx-2 my-2 ">
+                                    </li>
+                                    <li>
+                                        <a href="#"
+                                            class="flex items-center px-3 py-2 text-red-500 hover:bg-red-100 hover:text-red-500 rounded-md ">
+                                            <i class="uil-trash-alt mr-1"></i> Delete
+                                        </a>
+                                    </li>
+                                </ul>
+
                             </div>
                         </div>
-
-                    </div>
-                    <div class="right-side lg:pr-4">
-                        <!-- profile -->
-
-                        <a href="#">
-                            <img src="{% static 'assets/images/avatars/avatar-2.jpg' %}" class="header-avatar" alt="">
-                        </a>
-                        <div uk-drop="mode: click;offset:9" class="header_dropdown profile_dropdown border-t">
-                            <ul>
-                                <li><a href="settings"> Account setting </a> </li>
-                                <li><a href="explore.html">explore </a> </li>
-                                <li><a href="#"> Help </a> </li>
-                                <li><a href="logout"> Log Out</a></li>
-                            </ul>
-                        </div>
-
                     </div>
                 </div>
-            </header>
-
-            <div class="container m-auto">
-
-                <!--<h1 class="lg:text-2xl text-lg font-extrabold leading-none text-gray-900 tracking-tight mb-5"> Feed </h1>--->
-
-                <div class="lg:flex justify-center lg:space-x-12 lg:space-y-0 space-y-5">
-
-                    <!-- left sidebar-->
-                    <div class="space-y-5 flex-shrink-0 lg:w-8/12">
-
-                        <!-- post 1-->
-                        <div class="bg-white shadow rounded-md  -mx-2 lg:mx-0">
-    
-                            <!-- post header-->
-                            <div class="flex justify-between items-center px-4 py-3">
-                                <div class="flex flex-1 items-center space-x-4">
-                                    <a href="#">
-                                        <div class="bg-gradient-to-tr from-yellow-600 to-pink-600 p-0.5 rounded-full">  
-                                            <img src="{% static 'assets/images/avatars/avatar-2.jpg' %}" class="bg-gray-200 border border-white rounded-full w-8 h-8">
-                                        </div>
-                                    </a>
-                                    <span class="block capitalize font-semibold "> tomi_ml </span>
-                                    {% comment %}<h1>{{user.username}}</h1>  {% endcomment %}
-                                </div>
-                              <div>
-                                <a href="#"> <i class="icon-feather-more-horizontal text-2xl hover:bg-gray-200 rounded-full p-2 transition -mr-1 "></i> </a>
-                                <div class="bg-white w-56 shadow-md mx-auto p-2 mt-12 rounded-md text-gray-500 hidden text-base border border-gray-100  " uk-drop="mode: hover;pos: top-right">
-                              
-                                    <ul class="space-y-1">
-                                      <li> 
-                                          <a href="#" class="flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md ">
-                                           <i class="uil-share-alt mr-1"></i> Share
-                                          </a> 
-                                      </li>
-                                      <li> 
-                                          <a href="#" class="flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md ">
-                                           <i class="uil-edit-alt mr-1"></i>  Edit Post 
-                                          </a> 
-                                      </li>
-                                      <li> 
-                                          <a href="#" class="flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md ">
-                                           <i class="uil-comment-slash mr-1"></i>   Disable comments
-                                          </a> 
-                                      </li> 
-                                      <li> 
-                                          <a href="#" class="flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md ">
-                                           <i class="uil-favorite mr-1"></i>  Add favorites 
-                                          </a> 
-                                      </li>
-                                      <li>
-                                        <hr class="-mx-2 my-2 ">
-                                      </li>
-                                      <li> 
-                                          <a href="#" class="flex items-center px-3 py-2 text-red-500 hover:bg-red-100 hover:text-red-500 rounded-md ">
-                                           <i class="uil-trash-alt mr-1"></i>  Delete
-                                          </a> 
-                                      </li>
-                                    </ul>
-                                
-                                </div>
-                              </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>               
             </div>
         </div>
     </div>
+</div>
+</div>
+</div>
 
- <!-- Scripts
+<!-- Scripts
     ================================================== -->
-    <script src="{% static 'assets/js/tippy.all.min.js' %}"></script>  
-    <script src="{% static 'assets/js/jquery-3.3.1.min.js' %}"></script>
-    <script src="{% static 'assets/js/uikit.js' %}"></script>
-    <script src="{% static 'assets/js/simplebar.js' %}"></script>
-    <script src="{% static 'assets/js/custom.js' %}"></script>
+<script src="{% static 'assets/js/tippy.all.min.js' %}"></script>
+<script src="{% static 'assets/js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'assets/js/uikit.js' %}"></script>
+<script src="{% static 'assets/js/simplebar.js' %}"></script>
+<script src="{% static 'assets/js/custom.js' %}"></script>
 
 
-    <script src="{% static '../../unpkg.com/ionicons%405.2.3/dist/ionicons.js' %}"></script>
+<script src="{% static '../../unpkg.com/ionicons%405.2.3/dist/ionicons.js' %}"></script>
 </body>
 
 
