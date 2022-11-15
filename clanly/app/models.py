@@ -9,8 +9,8 @@ class Profile(models.Model):
     id_user = models.IntegerField()
     bio = models.TextField(blank=True, null=True)
     fname = models.CharField(max_length=30)
-    profile_img = models.ImageField(blank=True, upload_to='profile_images', default='blank-profile-picture.png')
-    cover_img = models.ImageField(blank=True, upload_to='cover_images', default='blank-cover-picture.png')
+    profile_img = models.ImageField(blank=True, upload_to='profile_images/', default='blank-profile-picture.png')
+    cover_img = models.ImageField(blank=True, upload_to='cover_images/', default='blank-cover-picture.png')
 
     def __str__(self):
         return self.user.username
@@ -19,7 +19,7 @@ class Profile(models.Model):
 class Community(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True)
-    communityimg = models.ImageField(upload_to='community_images', default='blank-profile-picture.png')
+    communityimg = models.ImageField(upload_to='community_images/', default='blank-profile-picture.png')
     members = models.ManyToManyField(User, related_name='members', blank=True)
     admins = models.ManyToManyField(User, related_name='admins', blank=True)
     banned = models.ManyToManyField(User, related_name='banned', blank=True)
@@ -34,7 +34,7 @@ class Community(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(blank=True)
-    postimg = models.ImageField(upload_to='post_images', default='blank-profile-picture.png')
+    postimg = models.ImageField(upload_to='post_images/', default='blank-profile-picture.png')
     community = models.ForeignKey(Community, on_delete=models.CASCADE)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)

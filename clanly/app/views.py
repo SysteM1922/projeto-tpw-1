@@ -3,7 +3,7 @@ from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from django.http import HttpResponse
 
-from .models import Profile
+from .models import Profile, Community, Comment, Post
 from django.contrib.auth.decorators import login_required
 
 
@@ -31,7 +31,7 @@ def signup(request):
                 messages.info(request, 'Username Taken')
                 return redirect('signup')
             else:
-                user = User.objects.create_user(username=username, email=email, password=password, first_name=fname)
+                user = User.objects.create_user(username=username, email=email, password=password)
                 user.save()
 
                 # create a Profile object for the new user
@@ -93,7 +93,7 @@ def settings(request):
         if email is not None:
             user.user.email = email
         if fname is not None:
-            user.user.first_name = fname
+            user.fname = fname
         if bio is not None:
             user.bio = bio
         if profile_img is not None:
@@ -121,8 +121,11 @@ def settings(request):
 
 @login_required(login_url='signin')
 def profile(request):
-    user = request.user
-    return render(request, 'profile.html', {'user_profile': user})
+    user = Profile.objects.get(user=request.user)
+    clans = Community.objects.filter(admins=request.user).count()
+    comments = Comment.objects.filter(user=request.user).count()
+    posts = Post.objects.filter(author=request.user).count()
+    return render(request, 'profile.html', {'user_profile': user, "clans": clans, "comments": comments, "posts": posts})
 
 def clan(request):
     return render(request, 'clan.html')
