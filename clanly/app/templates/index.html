@@ -26,59 +26,59 @@
     <link rel="stylesheet" href="https://unpkg.com/flowbite@latest/dist/flowbite.min.css" />
 
 
-<div class="p-4 w-80% lg:w-1/2 bg-purple-600">
-    <!--light mode - text and icons-->
-    <div class="p-2 text-gray-900 bg-white rounded-lg font-medium capitalize flex flex-wrap justify-between">
-        <div class="pt-1">
-            <a href="{% url 'index' %}" >
-            <span class="px-2 mr-2 border-r border-gray-800 ml-0 pb-0">
-                <img src="{% static 'images/logo_solo.png' %}" alt="alt placeholder"
-                    class="w-9 h-10 -mt-0 inline mx-auto">
-            </span>
-            </a>
-        </div>
-        <div class="text-right border-0 border-purple-500/100 w-96">
-            <form>
-                <input type="search" name="search"
-                    class=" px-10 py-3 placeholder-purple-300 text-blueGray-600 bg-purple-100 rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    placeholder="                       Search for a Clan or a User">
-                <input type="submit" method="POST" hidden />
-            </form>
-        </div>
-        <div class="mt-1">
-            <button id="dropdownDividerButton" data-dropdown-toggle="dropdownDivider"
-                class="my-auto text-white bg-purple-500 hover:bg-purple-500 focus:ring-4 focus:outline-none focus:ring-purple-500 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-purple-500 dark:hover:bg-purple-500 dark:focus:ring-purple-500"
-                type="button">Menu <svg class="ml-2 w-4 h-4" aria-hidden="true" fill="none" stroke="currentColor"
-                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                </svg></button>
-            <!-- Dropdown menu -->
-            <div id="dropdownDivider"
-                class="hidden z-10 w-24 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
-                <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDividerButton">
-                    <li>
-                        <a href="{% url 'profile' %}"
-                            class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Profile</a>
-                    </li>
-                    <li>
+    <div class="p-4 w-80% lg:w-1/2 bg-purple-600">
+        <!--light mode - text and icons-->
+        <div class="p-2 text-gray-900 bg-white rounded-lg font-medium capitalize flex flex-wrap justify-between">
+            <div class="pt-1">
+                <a href="{% url 'index' %}">
+                    <span class="px-2 mr-2 border-r border-gray-800 ml-0 pb-0">
+                        <img src="{% static 'images/logo_solo.png' %}" alt="alt placeholder"
+                            class="w-9 h-10 -mt-0 inline mx-auto">
+                    </span>
+                </a>
+            </div>
+            <div class="text-right border-0 border-purple-500/100 w-96">
+                <form>
+                    <input type="search" name="search"
+                        class=" px-10 py-3 placeholder-purple-300 text-blueGray-600 bg-purple-100 rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        placeholder="                       Search for a Clan or a User">
+                    <input type="submit" method="POST" hidden />
+                </form>
+            </div>
+            <div class="mt-1">
+                <button id="dropdownDividerButton" data-dropdown-toggle="dropdownDivider"
+                    class="my-auto text-white bg-purple-500 hover:bg-purple-500 focus:ring-4 focus:outline-none focus:ring-purple-500 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-purple-500 dark:hover:bg-purple-500 dark:focus:ring-purple-500"
+                    type="button">Menu <svg class="ml-2 w-4 h-4" aria-hidden="true" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg></button>
+                <!-- Dropdown menu -->
+                <div id="dropdownDivider"
+                    class="hidden z-10 w-24 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
+                    <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDividerButton">
+                        <li>
+                            <a href="{% url 'profile' %}"
+                                class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Profile</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                data-modal-toggle="post-modal-create">New
+                                Post</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'myclans' %}"
+                                class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">My
+                                Clans</a>
+                        </li>
+                    </ul>
+                    <div class="py-1">
                         <a href="#"
-                            class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                            data-modal-toggle="post-modal-create">New
-                            Post</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'myclans' %}"
-                            class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">My
-                            Clans</a>
-                    </li>
-                </ul>
-                <div class="py-1">
-                    <a href="#"
-                        class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Logout</a>
+                            class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Logout</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
 
     <div class="h-screen w-100% bg-purple-600 pb-20 mb-20">
@@ -108,13 +108,14 @@
                                     <div class="tooltip-arrow" data-popper-arrow></div>
                                 </div>
                                 <a href="#"> <i class="text-2xl fa fa-wrench mr-2" data-tooltip-target="tooltip-post"
-                                    data-modal-toggle="post-modal"></i> </a>
+                                        data-modal-toggle="post-modal"></i> </a>
                                 <div id="tooltip-postd" role="tooltip"
                                     class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-purple-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700">
                                     Delete Post
                                     <div class="tooltip-arrow" data-popper-arrow></div>
                                 </div>
-                                <a href="#"> <i class="text-2xl fa fa-trash " data-tooltip-target="tooltip-postd"></i> </a>
+                                <a href="#"> <i class="text-2xl fa fa-trash " data-tooltip-target="tooltip-postd"></i>
+                                </a>
                             </div>
                         </div>
                         <div class="px-3 pb-2">
@@ -137,83 +138,89 @@
                                 <hr class="mt-6 border-b-1 border-blueGray-300">
                                 <div class="mb-2 text-sm">
 
-                                <div id="accordion-flush" data-accordion="collapse"
-                                    data-active-classes="bg-white dark:bg-gray-900 text-gray-900 dark:text-white"
-                                    data-inactive-classes="text-gray-500 dark:text-gray-400">
-                                    <h2 id="accordion-flush-heading-1">
-                                        <button type="button"
-                                            class="flex items-center justify-center w-full py-5 font-medium text-left border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-white"
-                                            data-accordion-target="#accordion-flush-body-1" aria-expanded="true"
-                                            aria-controls="accordion-flush-body-1">
-                                            <i class="fa fa-comment cursor-pointer mr-1"></i>
-                                            <span class="text-sm text-gray-400 font-medium">12 comments</span>
-                                        </button>
-                                    </h2>
-                                    <div id="accordion-flush-body-1" class=""
-                                        aria-labelledby="accordion-flush-heading-1">
-                                        <div class="py-5 font-light border-b border-gray-200 dark:border-gray-700 flex">
-                                            <span class="font-medium mr-2">razzle_dazzle</span> Dude! How cool! I went
-                                            to New
-                                            Zealand last summer and had a blast taking the tour! So much to see! Make
-                                            sure you bring
-                                            a good camera when you go!
-                                            <div class="w-20% px-3 my-auto ">
+                                    <div id="accordion-flush" data-accordion="collapse"
+                                        data-active-classes="bg-white dark:bg-gray-900 text-gray-900 dark:text-white"
+                                        data-inactive-classes="text-gray-500 dark:text-gray-400">
+                                        <h2 id="accordion-flush-heading-1">
+                                            <button type="button"
+                                                class="flex items-center justify-center w-full py-5 font-medium text-left border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-white"
+                                                data-accordion-target="#accordion-flush-body-1" aria-expanded="true"
+                                                aria-controls="accordion-flush-body-1">
+                                                <i class="fa fa-comment cursor-pointer mr-1"></i>
+                                                <span class="text-sm text-gray-400 font-medium">12 comments</span>
+                                            </button>
+                                        </h2>
+                                        <div id="accordion-flush-body-1" class=""
+                                            aria-labelledby="accordion-flush-heading-1">
+                                            <div class="py-5 font-light border-b border-gray-200 dark:border-gray-700">
+                                                <span class="font-medium mr-2">razzle_dazzle</span> Dude! How cool! I
+                                                went
+                                                to New
+                                                Zealand last summer and had a blast taking the tour! So much to see!
+                                                Make
+                                                sure you bring
+                                                a good camera when you go!
                                                 <div id="tooltip-comment" role="tooltip"
                                                     class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-purple-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700">
                                                     Edit Comment
                                                     <div class="tooltip-arrow" data-popper-arrow></div>
                                                 </div>
                                                 <a href="#"> <i class="text-l fa fa-wrench"
-                                                    data-tooltip-target="tooltip-comment"
-                                                    data-modal-toggle="comment-modal"></i> </a>
+                                                        data-tooltip-target="tooltip-comment"
+                                                        data-modal-toggle="comment-modal"></i> </a>
                                                 <div id="tooltip-commentd" role="tooltip"
                                                     class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-purple-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700">
                                                     Delete Comment
                                                     <div class="tooltip-arrow" data-popper-arrow></div>
                                                 </div>
+                                                <a href="#"> <i class="text-l fa fa-trash"
+                                                        data-tooltip-target="tooltip-commentd"></i> </a>
+                                                <div class="w-20% px-3 my-auto ">
+                                                    <div class="mt-1">
+                                                        <form>
+                                                            <input type="text" name="comment"
+                                                                class="border-0 px-3 py-3 placeholder-purple-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                                                placeholder="Comment on this post">
+                                                            <input type="submit" method="POST" hidden />
+                                                        </form>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <form>
-                                                <input type="text" name="comment"
-                                                    class="border-0 px-3 py-3 placeholder-purple-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                                    placeholder="Comment on this post">
-                                                <input type="submit" method="POST" hidden />
-                                            </form>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="flex flex-row mx-auto justify-center mt-5">
-                    <button type="button"
-                        class="bg-purple-900 text-white rounded-l-md border-r border-purple-900 py-2 hover:bg-purple-900 hover:text-white px-3">
-                        <div class="flex flex-row align-middle">
-                            <svg class="w-5 mr-2" fill="currentColor" viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M7.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l2.293 2.293a1 1 0 010 1.414z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
-                            <p class="ml-2">Prev</p>
-                        </div>
-                    </button>
-                    <button type="button"
-                        class="bg-purple-900 text-white rounded-r-md py-2 border-l border-purple-900 hover:bg-purple-900 hover:text-white px-3">
-                        <div class="flex flex-row align-middle">
-                            <span class="mr-2">Next</span>
-                            <svg class="w-5 ml-2" fill="currentColor" viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
-                        </div>
-                    </button>
+                    <div class="flex flex-row mx-auto justify-center mt-5">
+                        <button type="button"
+                            class="bg-purple-900 text-white rounded-l-md border-r border-purple-900 py-2 hover:bg-purple-900 hover:text-white px-3">
+                            <div class="flex flex-row align-middle">
+                                <svg class="w-5 mr-2" fill="currentColor" viewBox="0 0 20 20"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M7.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l2.293 2.293a1 1 0 010 1.414z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                                <p class="ml-2">Prev</p>
+                            </div>
+                        </button>
+                        <button type="button"
+                            class="bg-purple-900 text-white rounded-r-md py-2 border-l border-purple-900 hover:bg-purple-900 hover:text-white px-3">
+                            <div class="flex flex-row align-middle">
+                                <span class="mr-2">Next</span>
+                                <svg class="w-5 ml-2" fill="currentColor" viewBox="0 0 20 20"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
     </div>
     <!-- Main modal -->
@@ -375,7 +382,7 @@
                                 rows="4">Content</textarea>
                         </div>
                     </div>
-            </form>
+                </form>
             </div>
         </div>
     </div>
