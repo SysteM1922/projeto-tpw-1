@@ -33,6 +33,7 @@ urlpatterns = [
     path('clan/<int:id>/f', views.follow_clan, name='follow_clan'),
     path('clan/<int:id>/u', views.unfollow_clan, name='unfollow_clan'),
     path('myclans/', views.myclans, name='myclans'),
+    path('edit_clan/', views.edit_clan, name='edit_clan'),
 ]       
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

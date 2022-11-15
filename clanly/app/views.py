@@ -136,6 +136,7 @@ def clan(request):
 def myclans(request):
     return render(request, 'myclans.html')
 
+<<<<<<< HEAD
 @login_required(login_url='signin')
 def clan(request, id=None):
     community = Community.objects.get(id_community=id)
@@ -157,6 +158,10 @@ def unfollow_clan(request, id=None):
     community.save()
     return redirect('clan', id=id)
 
+=======
+def edit_clan(request):
+    return render(request, 'edit_clan.html')
+>>>>>>> 3192d6d43fc02890b0256b477a2016380cc69ad7
 
 
 

@@ -57,7 +57,8 @@
                     </li>
                     <li>
                         <a href="#"
-                            class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">New
+                            class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                            data-modal-toggle="post-modal-create">New
                             Post</a>
                     </li>
                     <li>
@@ -82,138 +83,143 @@
 
         <div class="lg:flex justify-center lg:space-x-12 lg:space-y-0 space-y-5">
             <!-- left sidebar-->
-            <div class="space-y-5 flex-shrink-0 lg:w-12/12">
-                <div class="mx-auto lg:w-100%"> <img class="mx-auto" src="{% static 'images/logo-solo-white.png' %}">
+            <div class="space-y-5 flex-shrink-0 lg:w-8/12">
+                <div class="mx-auto lg:w-100%"> <img class="mx-auto" src="{% static 'images/logo-no-background.png' %}">
                 </div>
                 <!-- post 1-->
-                <div class=" rounded-lg overflow-hidden border w-full lg:w-12/12 md:w-6/12 bg-white mx-auto">
-                    <div class="w-full flex justify-between p-3">
-                        <div class="flex">
-                            <div
-                                class="rounded-full h-8 w-8 bg-gray-500 flex items-center justify-center overflow-hidden">
-                                <img src="{% static 'images/lowhigh.jpg' %}" alt="profilepic">
-                            </div>
-                            <span class="pt-1 ml-2 font-bold text-sm">c/highcohesion</span>
-                        </div>
-                        <div class="flex w-24 p-1">
-                            <div id="tooltip-post" role="tooltip"
-                                class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-purple-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700">
-                                Edit Post
-                                <div class="tooltip-arrow" data-popper-arrow></div>
-                            </div>
-                            <a href=# <i class="text-2xl fa fa-wrench mr-2" data-tooltip-target="tooltip-post"
-                                data-modal-toggle="post-modal"></i> </a>
-                            <div id="tooltip-postd" role="tooltip"
-                                class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-purple-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700">
-                                Delete Post
-                                <div class="tooltip-arrow" data-popper-arrow></div>
-                            </div>
-                            <a href=# <i class="text-2xl fa fa-trash " data-tooltip-target="tooltip-postd"></i> </a>
-                        </div>
-                    </div>
-                    <div class="px-3 pb-2">
-                        <div class="pt-1">
-                            <div class="mb-2 text-sm">
-                                <h1
-                                    class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-white">
-                                    Best practices for successful prototypes</h1>
-                                <p class="text-gray-600 dark:text-gray-400">Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit. Sed euismod, nisl nec aliquam tincidunt, nunc nibh lacinia nunc,
-                                    eget aliquam massa nisl eget dolor. Sed euismod, nisl nec aliquam tincidunt, nunc
-                                    nibh lacinia nunc, eget aliquam massa nisl eget dolor.</p>
-                            </div>
-                        </div>
-                        <div class="mb-2 mx-auto">
-                            <hr class="mt-6 border-b-1 border-blueGray-300">
-                            <div class="mb-2 text-sm">
+                <div class=" rounded-lg overflow-hidden w-full lg:w-12/12 md:w-6/12 bg-purple-600 mx-auto">
+                    <div class="w-full flex justify-center p-3">
+                        <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
+                            <table class="w-96 text-sm text-left text-gray-500 dark:text-gray-400">
+                                <thead
+                                    class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                    <tr>
+                                        <th scope="col" class="py-3 px-6 text-left">
+                                            Clan
+                                        </th>
+                                        <th scope="col" class="py-3 px-10">
 
-                                <div id="accordion-flush" data-accordion="collapse"
-                                    data-active-classes="bg-white dark:bg-gray-900 text-gray-900 dark:text-white"
-                                    data-inactive-classes="text-gray-500 dark:text-gray-400">
-                                    <h2 id="accordion-flush-heading-1">
-                                        <button type="button"
-                                            class="flex items-center justify-center w-full py-5 font-medium text-left border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-white"
-                                            data-accordion-target="#accordion-flush-body-1" aria-expanded="true"
-                                            aria-controls="accordion-flush-body-1">
-                                            <i class="fa fa-comment cursor-pointer mr-1"></i>
-                                            <span class="text-sm text-gray-400 font-medium">12 comments</span>
-                                        </button>
-                                    </h2>
-                                    <div id="accordion-flush-body-1" class=""
-                                        aria-labelledby="accordion-flush-heading-1">
-                                        <div class="py-5 font-light border-b border-gray-200 dark:border-gray-700 flex">
-                                            <span class="font-medium mr-2">razzle_dazzle</span> Dude! How cool! I went
-                                            to New
-                                            Zealand last summer and had a blast taking the tour! So much to see! Make
-                                            sure you bring
-                                            a good camera when you go!
-                                            <div class="w-20% px-3 my-auto ">
-                                                <div id="tooltip-comment" role="tooltip"
-                                                    class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-purple-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700">
-                                                    Edit Comment
-                                                    <div class="tooltip-arrow" data-popper-arrow></div>
-                                                </div>
-                                                <a href=# <i class="text-l fa fa-wrench"
-                                                    data-tooltip-target="tooltip-comment" data-modal-toggle="comment-modal"></i> </a>
-                                                <div id="tooltip-commentd" role="tooltip"
-                                                    class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-purple-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700">
-                                                    Delete Comment
-                                                    <div class="tooltip-arrow" data-popper-arrow></div>
-                                                </div>
-                                                <a href=# <i class="text-l fa fa-trash"
-                                                    data-tooltip-target="tooltip-commentd"></i> </a>
-                                            </div>
-                                        </div>
-                                        <form>
-                                            <input type="text" name="comment"
-                                                class="border-0 px-3 py-3 placeholder-purple-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                                placeholder="Comment on this post">
-                                            <input type="submit" method="POST" hidden />
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
+                                        </th>
+                                        <th scope="col" class="py-3 px-10">
+
+                                        </th>
+                                        <th scope="col" class="py-3 px-6">
+
+                                        </th>
+                                        <th scope="col" class="py-3 px-6 text-center">
+                                            Actions
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                                        <th scope="row"
+                                            class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white text-left">
+                                            <a href="#"
+                                                class="font-medium text-purple-600 dark:text-blue-500 hover:underline">c/binhoberde</a>
+                                        </th>
+                                        <td class="py-4 px-6">
+
+                                        </td>
+                                        <td class="py-4 px-6">
+
+                                        </td>
+                                        <td class="py-4 px-6">
+
+                                        </td>
+                                        <td class="py-4 px-6 text-center">
+                                            <a href=# <i class=" text-2xl fa fa-wrench mr-2"
+                                                data-tooltip-target="tooltip-post" data-modal-toggle="clan-modal"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr class="bg-gray-50 border-b dark:bg-gray-800 dark:border-gray-700">
+                                        <th scope="row"
+                                            class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white text-left">
+                                            <a href="#"
+                                                class="font-medium text-purple-600 dark:text-blue-500 hover:underline">c/correntealterna</a>
+                                        </th>
+                                        <td class="py-4 px-6">
+
+                                        </td>
+                                        <td class="py-4 px-6">
+
+                                        </td>
+                                        <td class="py-4 px-6">
+
+                                        </td>
+                                        <td class="py-4 px-6 text-center">
+                                            <a href=# <i class=" text-2xl fa fa-wrench mr-2"
+                                                data-tooltip-target="tooltip-post" data-modal-toggle="clan-modal"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                                        <th scope="row"
+                                            class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white text-left">
+                                            <a href="#"
+                                                class="font-medium text-purple-600 dark:text-blue-500 hover:underline">c/jovensdesinfetados</a>
+                                        </th>
+                                        <td class="py-4 px-6">
+
+                                        </td>
+                                        <td class="py-4 px-6">
+
+                                        </td>
+                                        <td class="py-4 px-6">
+
+                                        </td>
+                                        <td class="py-4 px-6 text-center">
+                                            <a href=# <i class=" text-2xl fa fa-wrench mr-2 "
+                                                data-tooltip-target="tooltip-post" data-modal-toggle="clan-modal"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr class="bg-gray-50 border-b dark:bg-gray-800 dark:border-gray-700">
+                                        <th scope="row"
+                                            class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white text-left">
+                                            <a href="#"
+                                                class="font-medium text-purple-600 dark:text-blue-500 hover:underline">c/highcohesionlowcoupling</a>
+                                        </th>
+                                        <td class="py-4 px-6">
+                                        </td>
+                                        <td class="py-4 px-6">
+                                        </td>
+                                        <td class="py-4 px-6">
+                                        </td>
+                                        <td class="py-4 px-6 text-center">
+                                            <a href=# <i class=" text-2xl fa fa-wrench mr-2 "
+                                                data-tooltip-target="tooltip-post" data-modal-toggle="clan-modal"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
+                </div>
+                <div class="flex flex-row mx-auto justify-center mt-5">
+                    <button type="button"
+                        class="bg-purple-900 text-white rounded-lg border-purple-900 py-2 hover:bg-purple-900 hover:text-white px-3">
+                        <div class="flex flex-row align-middle">
+                            <p class=""><i class="fa fa-plus mr-2"></i> New Clan</p>
+                        </div>
+                    </button>
                 </div>
             </div>
-        </div>
-        <div class="flex flex-row mx-auto justify-center mt-5">
-            <button type="button"
-                class="bg-purple-900 text-white rounded-l-md border-r border-purple-900 py-2 hover:bg-purple-900 hover:text-white px-3">
-                <div class="flex flex-row align-middle">
-                    <svg class="w-5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M7.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l2.293 2.293a1 1 0 010 1.414z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                    <p class="ml-2">Prev</p>
-                </div>
-            </button>
-            <button type="button"
-                class="bg-purple-900 text-white rounded-r-md py-2 border-l border-purple-900 hover:bg-purple-900 hover:text-white px-3">
-                <div class="flex flex-row align-middle">
-                    <span class="mr-2">Next</span>
-                    <svg class="w-5 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                </div>
-            </button>
         </div>
     </div>
 </div>
 </div>
 </div>
 <!-- Main modal -->
-<div id="post-modal" tabindex="-1" aria-hidden="true"
+<div id="clan-modal" tabindex="-1" aria-hidden="true"
     class="hidden overflow-y-auto overflow-x-hidden fixed z-50 md:inset-0 h-modal md:h-50%">
     <div class="relative flex flex-col min-w-0 break-words w-8/12 mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
         <div class="rounded-t bg-white mb-0 px-6 py-6">
             <div class="text-center flex justify-between">
                 <h6 class="text-blueGray-700 text-xl font-bold">
-                    Edit Post
+                    Edit Clan
                 </h6>
 
             </div>
@@ -228,10 +234,55 @@
                         Save
                     </button>
                 </div>
-
-                <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
-                    Edit Post
+                <div class="flex flex-wrap">
+                    <div class="w-full lg:w-12/12 px-4">
+                        <div class="relative w-full mb-3">
+                            <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                htmlfor="grid-password">
+                                Name
+                            </label>
+                            <textarea type="text"
+                                class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                rows="4">c/</textarea>
+                        </div>
+                    </div>
+                    <div class="w-full lg:w-12/12 px-4">
+                        <div class="relative w-full mb-3">
+                            <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                htmlfor="grid-password">
+                                Description
+                            </label>
+                            <textarea type="text"
+                                class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                rows="4">Description</textarea>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div id="post-modal-create" tabindex="-1" aria-hidden="true"
+    class="hidden overflow-y-auto overflow-x-hidden fixed z-50 md:inset-0 h-modal md:h-50%">
+    <div class="relative flex flex-col min-w-0 break-words w-8/12 mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
+        <div class="rounded-t bg-white mb-0 px-6 py-6">
+            <div class="text-center flex justify-between">
+                <h6 class="text-blueGray-700 text-xl font-bold">
+                    New Post
                 </h6>
+
+            </div>
+        </div>
+        <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="mx-auto text-center pt-4">
+                    <button
+                        class="bg-purple-500 text-white active:bg-purple-500 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                        type="submit">
+                        Post
+                    </button>
+                </div>
                 <div class="flex flex-wrap">
                     <div class="w-full lg:w-12/12 px-4">
                         <div class="relative w-full mb-3">
@@ -255,45 +306,21 @@
                                 rows="4">Content</textarea>
                         </div>
                     </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<div id="comment-modal" tabindex="-1" aria-hidden="true"
-    class="hidden overflow-y-auto overflow-x-hidden fixed z-50 md:inset-0 h-modal md:h-full">
-    <div class="relative flex flex-col min-w-0 break-words w-12/12 mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
-        <div class="rounded-t bg-white mb-0 px-6 py-6">
-            <div class="text-center flex justify-between">
-                <h6 class="text-blueGray-700 text-xl font-bold">
-                    Edit Comment
-                </h6>
-
-            </div>
-        </div>
-        <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
-            <form action="" method="POST">
-                {% csrf_token %}
-                <div class="mx-auto text-center pt-4">
-                    <button
-                        class="bg-purple-500 text-white active:bg-purple-500 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                        type="submit">
-                        Save
-                    </button>
-                </div>
-
-                <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
-                    Edit Comment
-                </h6>
                     <div class="w-full lg:w-12/12 px-4">
                         <div class="relative w-full mb-3">
                             <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                                 htmlfor="grid-password">
-                                Content
+                                Clan
                             </label>
-                            <textarea type="text"
-                                class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                rows="4">Content</textarea>
+                            <label for="underline_select" class="sr-only">Underline select</label>
+                            <select id="underline_select"
+                                class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-white border-1 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
+                                <option selected>Choose a Clan</option>
+                                <option value="1">Clan 1</option>
+                                <option value="2">Clan 2</option>
+                                <option value="3">Clan 3</option>
+                                <option value="4">Clan 4</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -301,7 +328,6 @@
         </div>
     </div>
 </div>
-
 
 <!-- Scripts
     ================================================== -->
