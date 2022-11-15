@@ -16,15 +16,16 @@
   <link rel="stylesheet" href="{% static 'css/color.css' %}" />
   <link rel="stylesheet" href="{% static 'css/responsive.css' %}" />
   <link rel="stylesheet" href="https://unpkg.com/flowbite@latest/dist/flowbite.min.css" />
-
-</head>
-
-<body>
   <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css">
   <link rel="stylesheet"
     href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
 
-  <main class="profile-page">
+</head>
+
+<body>
+  <link rel="stylesheet" href="https://unpkg.com/flowbite@latest/dist/flowbite.min.css" />
+
+  <main class="">
     <div class="p-4 w-80% lg:w-1/2 bg-purple-600">
       <!--light mode - text and icons-->
       <div class="p-2 text-gray-900 bg-white rounded-lg font-medium capitalize flex flex-wrap justify-between">
@@ -109,7 +110,7 @@
                 </div>
               </div>
               <div class="w-full lg:w-4/12 px-4 lg:order-1">
-                <div class="flex justify-center py-4 lg:pt-4 pt-8">
+                <div class="flex justify-between py-4 lg:pt-4 pt-8">
                   <div class="mr-4 p-3 text-center">
                     <span
                       class="text-xl font-bold block uppercase tracking-wide text-blueGray-600">{{clans}}</span><span
@@ -209,6 +210,8 @@
       </div>
     </div>
   </div>
+  <script src="{% static '../../unpkg.com/ionicons%405.2.3/dist/ionicons.js' %}"></script>
+
   <script src="https://unpkg.com/flowbite@latest/dist/flowbite.js"></script>
 </body>
 
