@@ -31,13 +31,16 @@
       <!--light mode - text and icons-->
       <div class="p-2 text-gray-900 bg-white rounded-lg font-medium capitalize flex flex-wrap justify-between">
         <div class="pt-1">
+            <a href="{% url 'index' %}" >
             <span class="px-2 mr-2 border-r border-gray-800 ml-0 pb-0">
                 <img src="{% static 'images/logo_solo.png' %}" alt="alt placeholder"
                     class="w-9 h-10 -mt-0 inline mx-auto">
             </span>
+            </a>
         </div>
         <div class="text-right border-0 border-purple-500/100 w-96">
-            <form>
+            <form action="" method="POST">
+                    {% csrf_token %}
                 <input type="search" name="search"
                     class=" px-10 py-2 mt-1 placeholder-purple-300 text-blueGray-600 bg-purple-100 rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     placeholder="                            Search for a Clan or a User">
@@ -56,7 +59,7 @@
                 class="hidden z-10 w-24 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
                 <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDividerButton">
                     <li>
-                        <a href="#"
+                        <a href="{% url 'profile' %}"
                             class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Profile</a>
                     </li>
                     <li>
@@ -66,7 +69,7 @@
                             Post</a>
                     </li>
                     <li>
-                        <a href="#"
+                        <a href="{% url 'myclans' %}"
                             class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">My
                             Clans</a>
                     </li>
@@ -165,14 +168,14 @@
                           Edit Post
                           <div class="tooltip-arrow" data-popper-arrow></div>
                         </div>
-                        <a href="/clan/{{p.id_post}}/e"" <i class="text-2xl fa fa-wrench mr-2" data-tooltip-target="tooltip-post"
+                        <a href="/clan/{{p.id_post}}/e"> <i class="text-2xl fa fa-wrench mr-2" data-tooltip-target="tooltip-post"
                           data-modal-toggle="post-modal"></i> </a>
                         <div id="tooltip-postd" role="tooltip"
                           class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-purple-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700">
                           Delete Post
                           <div class="tooltip-arrow" data-popper-arrow></div>
                         </div>
-                        <a href="/clan/{{p.id_post}}/d" <i class="text-2xl fa fa-trash " data-tooltip-target="tooltip-postd"></i> </a>
+                        <a href="/clan/{{p.id_post}}/d"> <i class="text-2xl fa fa-trash " data-tooltip-target="tooltip-postd"></i> </a>
                       </div>
                       {% endif %}
                     </div>
