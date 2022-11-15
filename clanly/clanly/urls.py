@@ -31,7 +31,7 @@ urlpatterns = [
     path('profile/', views.profile, name='profile'),
     path('clan/', views.clan, name='clan'),
     path('myclans/', views.myclans, name='myclans'),
-    path('create_clan/', views.create_clan, name='create_clan'),
+    path('edit_clan/', views.edit_clan, name='edit_clan'),
 ]       
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

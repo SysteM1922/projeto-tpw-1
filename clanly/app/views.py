@@ -133,8 +133,8 @@ def clan(request):
 def myclans(request):
     return render(request, 'myclans.html')
 
-def create_clan(request):
-    return render(request, 'create_clan.html')
+def edit_clan(request):
+    return render(request, 'edit_clan.html')
 
 
 
