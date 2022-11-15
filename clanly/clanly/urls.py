@@ -30,6 +30,7 @@ urlpatterns = [
     path('logout/', views.logout, name='logout'),
     path('profile/', views.profile, name='profile'),
     path('clan/<int:id>', views.clan, name='clan'),
+    path('edit_clan/c', views.create_clan, name='create_clan'),
     path('clan/<int:id>/f', views.follow_clan, name='follow_clan'),
     path('clan/<int:id>/u', views.unfollow_clan, name='unfollow_clan'),
     path('clan/p', views.create_post, name='create_post'),
@@ -41,6 +42,7 @@ urlpatterns = [
     path('myclans/', views.myclans, name='myclans'),
     path('edit_clan/', views.edit_clan, name='edit_clan'),
     path('myclans/', views.myclans, name='delete_clan'),
+    path('c/<int:id>', views.create_comment_index, name='create_comment_index'),
 ]       
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
