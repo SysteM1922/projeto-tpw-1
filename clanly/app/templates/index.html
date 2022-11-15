@@ -40,10 +40,31 @@
                 <input type="submit" method="POST" hidden />
             </form>
         </div>
-        <div class="mt-2">
-            <span class="w-10 relative float-right mr-3 cursor-pointer hover:text-gray-700">
-                <i class="w-8 fas fa-user p-2 bg-gray-200 rounded-full">
-                </i>
+        <div class="mt-1">
+            <button id="dropdownDividerButton" data-dropdown-toggle="dropdownDivider"
+                class="my-auto text-white bg-purple-500 hover:bg-purple-500 focus:ring-4 focus:outline-none focus:ring-purple-500 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-purple-500 dark:hover:bg-purple-500 dark:focus:ring-purple-500"
+                type="button">Menu <svg class="ml-2 w-4 h-4" aria-hidden="true" fill="none"
+                    stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg></button>
+            <!-- Dropdown menu -->
+            <div id="dropdownDivider"
+                class="hidden z-10 w-24 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
+                <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDividerButton">
+                    <li>
+                        <a href="#"
+                            class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Profile</a>
+                    </li>
+                    <li>
+                        <a href="#"
+                            class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">My Clans</a>
+                    </li>
+                </ul>
+                <div class="py-1">
+                    <a href="#"
+                        class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Logout</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -66,7 +87,7 @@
                                 class="rounded-full h-8 w-8 bg-gray-500 flex items-center justify-center overflow-hidden">
                                 <img src="{% static 'images/lowhigh.jpg' %}" alt="profilepic">
                             </div>
-                            <span class="pt-1 ml-2 font-bold text-sm">c/highcohesionlowcoupling</span>
+                            <span class="pt-1 ml-2 font-bold text-sm">c/highcohesion</span>
                         </div>
                     </div>
                     <div class="px-3 pb-2">
