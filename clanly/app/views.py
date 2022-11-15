@@ -58,11 +58,9 @@ def signin(request):
             user = auth.authenticate(username=username, password=password)
 
             if user is not None:
-                print("user : ", user)
                 auth.login(request, user)
                 return redirect('/')
             else:
-                print("invalid")
                 messages.info(request, 'Credentials Invalid')
                 return redirect('signin')
 
@@ -102,6 +100,17 @@ def settings(request):
             user.profile_img = profile_img
         if cover_img is not None:
             user.cover_img = cover_img
+
+
+        if user.user.check_password(request.POST.get("password", None)):
+            password2 = request.POST.get('password2', None)
+            password3 = request.POST.get('password3', None)
+            if password2 == password3:
+                messages.info(request, 'Password Changed')
+                user.user.set_password(password2)
+            else:
+                messages.info(request, 'Passwords Not Matching')
+                return redirect('settings')
 
         user.user.save()
         user.save()
