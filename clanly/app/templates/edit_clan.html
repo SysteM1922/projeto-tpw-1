@@ -37,7 +37,7 @@
                     </div>
                 </div>
                 <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
-                    <form action="" method="POST">
+                    <form action="." method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
                         <div class="mx-auto text-right">
                             <button
@@ -53,9 +53,9 @@
                                         htmlfor="grid-password">
                                         Name
                                     </label>
-                                    <input type="text" disabled
+                                    <input type="text"
                                         class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                        value="c/">
+                                        value="c/" name="name">
                                 </div>
                             </div>
                         </div>
@@ -74,7 +74,7 @@
                                     </label>
                                     <textarea type="text"
                                         class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                        rows="4"> Description</textarea>
+                                        rows="4" name="content"></textarea>
                                 </div>
                             </div>
                             <div class="flex flex-wrap mx-auto py-6">
@@ -84,7 +84,7 @@
                                             htmlfor="grid-password">
                                             Clan Photo
                                         </label>
-                                        <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                                        <input type="file" class="form-control-file" id="exampleFormControlFile1" name="communityim">
                                     </div>
                                 </div>
                                 <div class="relative w-full lg:w-6/12 mb-3">
@@ -92,7 +92,7 @@
                                         htmlfor="grid-password">
                                         Cover Photo
                                     </label>
-                                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                                    <input type="file" class="form-control-file" id="exampleFormControlFile1" name="background">
                                 </div>
                             </div>
                         </div>
@@ -101,7 +101,7 @@
             </div>
         </div>
     </div>
-    <div class="py-40 bg-purple-600 h-full"></div>
+    <div class="py-20 bg-purple-600 h-full"></div>
 </body>
 
 </html>

@@ -52,7 +52,7 @@
                 class="hidden z-10 w-24 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
                 <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDividerButton">
                     <li>
-                        <a href="#"
+                        <a href="/profile/"
                             class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Profile</a>
                     </li>
                     <li>
@@ -117,11 +117,8 @@
                             <div class="mb-2 text-sm max-w-xl mx-auto">
                                 <h1
                                     class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-white text-center">
-                                    Best practices for successful prototypes</h1>
-                                <p class="text-gray-600 dark:text-gray-400 text-center">Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit. Sed euismod, nisl nec aliquam tincidunt, nunc nibh lacinia nunc,
-                                    eget aliquam massa nisl eget dolor. Sed euismod, nisl ne    c aliquam tincidunt, nunc
-    
+                                    {{p.title}}</h1>
+                                <p class="text-gray-600 dark:text-gray-400 text-center">{{p.description}}</p>
                                 </p>
                             </div>
                         </div>
@@ -138,7 +135,7 @@
                                             data-accordion-target="#accordion-flush-body-1" aria-expanded="true"
                                             aria-controls="accordion-flush-body-1">
                                             <i class="fa fa-comment cursor-pointer mr-1"></i>
-                                            <span class="text-sm text-gray-400 font-medium">12 comments</span>
+                                            <span class="text-sm text-gray-400 font-medium">Comments</span>
                                         </button>
                                     </h2>
                                     <div id="accordion-flush-body-1" class=""

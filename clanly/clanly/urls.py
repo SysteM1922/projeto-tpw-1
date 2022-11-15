@@ -32,8 +32,15 @@ urlpatterns = [
     path('clan/<int:id>', views.clan, name='clan'),
     path('clan/<int:id>/f', views.follow_clan, name='follow_clan'),
     path('clan/<int:id>/u', views.unfollow_clan, name='unfollow_clan'),
+    path('clan/p', views.create_post, name='create_post'),
+    path('clan/<int:id>/d', views.delete_post, name='delete_post'),
+    path('clan/<int:id>/e', views.edit_post, name='edit_post'),
+    path('clan/post/<int:id>/c', views.create_comment, name='create_comment'),
+    path('clan/post/<int:id>/d', views.delete_comment, name='delete_comment'),
+    path('clan/post/<int:id>/e', views.edit_comment, name='edit_comment'),
     path('myclans/', views.myclans, name='myclans'),
     path('edit_clan/', views.edit_clan, name='edit_clan'),
+    path('myclans/', views.myclans, name='delete_clan'),
 ]       
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
