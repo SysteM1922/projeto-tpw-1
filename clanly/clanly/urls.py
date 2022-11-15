@@ -30,6 +30,7 @@ urlpatterns = [
     path('logout/', views.logout, name='logout'),
     path('profile/', views.profile, name='profile'),
     path('clan/', views.clan, name='clan'),
+    path('myclans/', views.myclans, name='myclans'),
 ]       
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

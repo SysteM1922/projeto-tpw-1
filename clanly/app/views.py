@@ -127,6 +127,9 @@ def profile(request):
 def clan(request):
     return render(request, 'clan.html')
 
+def myclans(request):
+    return render(request, 'myclans.html')
+
 
 
 
