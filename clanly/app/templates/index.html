@@ -43,8 +43,8 @@
         <div class="mt-1">
             <button id="dropdownDividerButton" data-dropdown-toggle="dropdownDivider"
                 class="my-auto text-white bg-purple-500 hover:bg-purple-500 focus:ring-4 focus:outline-none focus:ring-purple-500 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-purple-500 dark:hover:bg-purple-500 dark:focus:ring-purple-500"
-                type="button">Menu <svg class="ml-2 w-4 h-4" aria-hidden="true" fill="none"
-                    stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                type="button">Menu <svg class="ml-2 w-4 h-4" aria-hidden="true" fill="none" stroke="currentColor"
+                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                 </svg></button>
             <!-- Dropdown menu -->
@@ -57,7 +57,13 @@
                     </li>
                     <li>
                         <a href="#"
-                            class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">My Clans</a>
+                            class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">New
+                            Post</a>
+                    </li>
+                    <li>
+                        <a href="#"
+                            class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">My
+                            Clans</a>
                     </li>
                 </ul>
                 <div class="py-1">
@@ -88,6 +94,19 @@
                                 <img src="{% static 'images/lowhigh.jpg' %}" alt="profilepic">
                             </div>
                             <span class="pt-1 ml-2 font-bold text-sm">c/highcohesion</span>
+                        </div>
+                        <div class="flex w-24 p-1">
+                            <div id="tooltip-post" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-purple-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700">
+                                Edit Post
+                                <div class="tooltip-arrow" data-popper-arrow></div>
+                            </div>
+                            <a href=# <i class="text-2xl fa fa-wrench mr-2" data-tooltip-target="tooltip-post"></i> </a>
+                            <div id="tooltip-postd" role="tooltip"
+                            class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-purple-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700">
+                            Delete Post
+                            <div class="tooltip-arrow" data-popper-arrow></div>
+                        </div>
+                        <a href=# <i class="text-2xl fa fa-trash " data-tooltip-target="tooltip-postd"></i> </a>
                         </div>
                     </div>
                     <div class="px-3 pb-2">
@@ -120,15 +139,27 @@
                                     </h2>
                                     <div id="accordion-flush-body-1" class=""
                                         aria-labelledby="accordion-flush-heading-1">
-                                        <div class="py-5 font-light border-b border-gray-200 dark:border-gray-700">
+                                        <div class="py-5 font-light border-b border-gray-200 dark:border-gray-700 flex">
                                             <span class="font-medium mr-2">razzle_dazzle</span> Dude! How cool! I went
                                             to New
                                             Zealand last summer and had a blast taking the tour! So much to see! Make
                                             sure you bring
                                             a good camera when you go!
+                                            <div class="w-20% px-3 my-auto ">
+                                                <div id="tooltip-comment" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-purple-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700">
+                                                    Edit Comment
+                                                    <div class="tooltip-arrow" data-popper-arrow></div>
+                                                </div>
+                                                <a href=# <i class="text-l fa fa-wrench" data-tooltip-target="tooltip-comment"></i> </a>
+                                                <div id="tooltip-commentd" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-purple-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700">
+                                                    Delete Comment
+                                                    <div class="tooltip-arrow" data-popper-arrow></div>
+                                                </div>
+                                                <a href=# <i class="text-l fa fa-trash" data-tooltip-target="tooltip-commentd"></i> </a>
+                                            </div>
                                         </div>
                                         <form>
-                                            <input type="text" name="username"
+                                            <input type="text" name="comment"
                                                 class="border-0 px-3 py-3 placeholder-purple-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                                 placeholder="Comment on this post">
                                             <input type="submit" method="POST" hidden />
@@ -143,7 +174,7 @@
         </div>
         <div class="flex flex-row mx-auto justify-center mt-5">
             <button type="button"
-                class="bg-gray-800 text-white rounded-l-md border-r border-gray-100 py-2 hover:bg-red-700 hover:text-white px-3">
+                class="bg-purple-900 text-white rounded-l-md border-r border-purple-900 py-2 hover:bg-purple-900 hover:text-white px-3">
                 <div class="flex flex-row align-middle">
                     <svg class="w-5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd"
@@ -154,7 +185,7 @@
                 </div>
             </button>
             <button type="button"
-                class="bg-gray-800 text-white rounded-r-md py-2 border-l border-gray-200 hover:bg-red-700 hover:text-white px-3">
+                class="bg-purple-900 text-white rounded-r-md py-2 border-l border-purple-900 hover:bg-purple-900 hover:text-white px-3">
                 <div class="flex flex-row align-middle">
                     <span class="mr-2">Next</span>
                     <svg class="w-5 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
