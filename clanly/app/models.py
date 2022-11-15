@@ -1,5 +1,5 @@
-from django.db import models
 from django.contrib.auth import get_user_model
+from django.db import models
 
 User = get_user_model()
 # Create your models here.
@@ -9,8 +9,8 @@ class Profile(models.Model):
     id_user = models.IntegerField()
     bio = models.TextField(blank=True, null=True)
     fname = models.CharField(max_length=30)
-    profileimg = models.ImageField(blank=True, upload_to='profile_images', default='blank-profile-picture.png')
-    location = models.CharField(max_length=100, blank=True, null=True)
+    profile_img = models.ImageField(blank=True, upload_to='profile_images', default='blank-profile-picture.png')
+    cover_img = models.ImageField(blank=True, upload_to='cover_images', default='blank-cover-picture.png')
 
     def __str__(self):
         return self.user.username
@@ -25,6 +25,7 @@ class Community(models.Model):
     banned = models.ManyToManyField(User, related_name='banned', blank=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    private = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
