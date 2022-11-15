@@ -38,7 +38,7 @@
                     </div>
                 </div>
                 <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
-                    <form action="" method="POST">
+                    <form action="" method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
                         <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
                             User Information
@@ -57,9 +57,10 @@
                                         htmlfor="grid-password">
                                         Username
                                     </label>
-                                    <input type="text" disabled
+                                    <input type="text"
+                                        name="username"
                                         class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                        value="{{user_profile.username}}">
+                                        value="{{user_profile.user.username}}">
                                 </div>
                             </div>
                             <div class="w-full lg:w-6/12 px-4">
@@ -68,20 +69,22 @@
                                         htmlfor="grid-password">
                                         Email address
                                     </label>
-                                    <input type="email" disabled
+                                    <input type="email"
+                                        name="email"
                                         class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                        value="{{user_profile.email}}">
+                                        value="{{user_profile.user.email}}">
                                 </div>
                             </div>
                             <div class="w-full lg:w-6/12 px-4 justify-center mx-auto pt-4">
                                 <div class="relative w-full mb-3">
                                     <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                                        htmlfor="grid   -password">
+                                    htmlfor="grid-password">
                                         Name
                                     </label>
-                                    <input type="text" disabled
+                                    <input type="text"
+                                        name="name"
                                         class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                        value="{{user_profile.first_name}}">
+                                        value="{{user_profile.fname}}">
                                 </div>
                             </div>
                         </div>
@@ -100,7 +103,7 @@
                                     </label>
                                     <textarea type="text"
                                         class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                        rows="4"> About me</textarea>
+                                        rows="4" name="bio">{{user_profile.bio}}</textarea>
                                 </div>
                             </div>
                             <div class="flex flex-wrap mx-auto py-6">
@@ -110,7 +113,7 @@
                                             htmlfor="grid-password">
                                             Profile Photo
                                         </label>
-                                        <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                                        <input type="file" name="profile_img" class="form-control-file" id="exampleFormControlFile1">
                                     </div>
                                 </div>
                                 <div class="relative w-full lg:w-6/12 mb-3">
@@ -118,7 +121,7 @@
                                         htmlfor="grid-password">
                                         Cover Photo
                                     </label>
-                                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                                    <input type="file" name="cover_img" class="form-control-file" id="exampleFormControlFile1">
                                 </div>
                             </div>
                         </div>
@@ -156,7 +159,7 @@
                                     </label>
                                     <input type="password"
                                         class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                        name="password" placeholder="Password">
+                                        name="password3" placeholder="Password">
                                 </div>
                             </div>
                         </div>

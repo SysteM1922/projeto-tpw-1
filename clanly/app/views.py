@@ -119,7 +119,7 @@ def settings(request):
         user.user.save()
         user.save()
         
-        return redirect('settings')
+        return redirect('profile')
 
     return render(request, 'setting.html', {'user_profile': user})
 
