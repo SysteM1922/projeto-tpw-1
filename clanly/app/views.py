@@ -122,16 +122,40 @@ def settings(request):
 @login_required(login_url='signin')
 def profile(request):
     user = Profile.objects.get(user=request.user)
-    clans = Community.objects.filter(admins=request.user).count()
+    clans = Community.objects.filter(members=request.user).count()
+
     comments = Comment.objects.filter(user=request.user).count()
     posts = Post.objects.filter(author=request.user).count()
     return render(request, 'profile.html', {'user_profile': user, "clans": clans, "comments": comments, "posts": posts})
 
+@login_required(login_url='signin')
 def clan(request):
     return render(request, 'clan.html')
 
+@login_required(login_url='signin')
 def myclans(request):
     return render(request, 'myclans.html')
+
+@login_required(login_url='signin')
+def clan(request, id=None):
+    community = Community.objects.get(id_community=id)
+    posts = Post.objects.filter(community=community).count()
+    followers = len(community.members.all())
+    return render(request, 'clan.html', {"followers": followers, "posts": posts, "id": id, "clan": community})
+
+@login_required(login_url='signin')
+def follow_clan(request, id=None):
+    community = Community.objects.get(id_community=id)
+    community.members.add(request.user)
+    community.save()
+    return redirect('clan', id=id)
+
+@login_required(login_url='signin')
+def unfollow_clan(request, id=None):
+    community = Community.objects.get(id_community=id)
+    community.members.remove(request.user)
+    community.save()
+    return redirect('clan', id=id)
 
 
 

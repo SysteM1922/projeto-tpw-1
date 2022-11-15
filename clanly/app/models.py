@@ -6,7 +6,7 @@ User = get_user_model()
 
 class Profile(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    id_user = models.IntegerField()
+    id_user = models.IntegerField(primary_key=True)
     bio = models.TextField(blank=True, null=True)
     fname = models.CharField(max_length=30)
     profile_img = models.ImageField(blank=True, upload_to='profile_images/', default='blank-profile-picture.png')
@@ -18,8 +18,10 @@ class Profile(models.Model):
 
 class Community(models.Model):
     name = models.CharField(max_length=100)
+    id_community = models.IntegerField(primary_key=True)
     description = models.TextField(blank=True)
     communityimg = models.ImageField(upload_to='community_images/', default='blank-profile-picture.png')
+    background = models.ImageField(upload_to='community_images/', default='blank-profile-picture.png')
     members = models.ManyToManyField(User, related_name='members', blank=True)
     admins = models.ManyToManyField(User, related_name='admins', blank=True)
     banned = models.ManyToManyField(User, related_name='banned', blank=True)
@@ -33,6 +35,7 @@ class Community(models.Model):
 
 class Post(models.Model):
     title = models.CharField(max_length=100)
+    id_post = models.IntegerField(primary_key=True)
     description = models.TextField(blank=True)
     postimg = models.ImageField(upload_to='post_images/', default='blank-profile-picture.png')
     community = models.ForeignKey(Community, on_delete=models.CASCADE)
@@ -47,6 +50,7 @@ class Post(models.Model):
 class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    id_comment = models.IntegerField(primary_key=True)
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

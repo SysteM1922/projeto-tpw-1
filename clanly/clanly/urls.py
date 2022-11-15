@@ -29,7 +29,9 @@ urlpatterns = [
     path('signin/', views.signin, name='signin'),
     path('logout/', views.logout, name='logout'),
     path('profile/', views.profile, name='profile'),
-    path('clan/', views.clan, name='clan'),
+    path('clan/<int:id>', views.clan, name='clan'),
+    path('clan/<int:id>/f', views.follow_clan, name='follow_clan'),
+    path('clan/<int:id>/u', views.unfollow_clan, name='unfollow_clan'),
     path('myclans/', views.myclans, name='myclans'),
 ]       
 
