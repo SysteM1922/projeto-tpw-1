@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
+@login_required(login_url='signin')
 def index(request):
     return render(request, 'index.html')
 
@@ -47,72 +48,72 @@ def signup(request):
         return render(request, 'signup.html')
 
 def signin(request):
-    
-    if request.method == 'POST':
-        username = request.POST.get('username', None)
-        password = request.POST.get('password', None)
 
-        user = auth.authenticate(username=username, password=password)
+    if not request.user.is_authenticated:
 
-        if user is not None:
-            print("user : ", user)
-            auth.login(request, user)
-            return redirect('/')
+        if request.method == 'POST':
+            username = request.POST.get('username', None)
+            password = request.POST.get('password', None)
+
+            user = auth.authenticate(username=username, password=password)
+
+            if user is not None:
+                print("user : ", user)
+                auth.login(request, user)
+                return redirect('/')
+            else:
+                print("invalid")
+                messages.info(request, 'Credentials Invalid')
+                return redirect('signin')
+
         else:
-            print("invalid")
-            messages.info(request, 'Credentials Invalid')
-            return redirect('signin')
+            return render(request, 'signin.html')
 
     else:
-        return render(request, 'signin.html')
+        return redirect('settings')
 
 @login_required(login_url='signin')
 def logout(request):
     auth.logout(request)
     return redirect('signin')
 
-
+@login_required(login_url='signin')
 def settings(request):
-    user = request.user
-    #print("user : ", user)
+    user = Profile.objects.get(user=request.user)
 
     if request.method == 'POST':
-        #print("in")
-        if request.FILES.get('image') == None:
-            #print("in2")
-            bio = request.POST.get('bio', None)
-            location = request.POST.get('location', None)
-            fname = request.POST.get('fname', "teste")
 
-            #user.profileimg = image
-            user.bio = bio
-            user.fname = fname
-            user.location = location
-            user.save()
+        username = request.POST.get('username', None)
+        email = request.POST.get('email', None)
+        fname = request.POST.get('name', None)
+        bio = request.POST.get('bio', None)
+        profile_img = request.FILES.get('profile_img', None)
+        cover_img = request.FILES.get('cover_img', None)
 
-        if request.FILES.get('image') != None:
-            #print("in3")
-            bio = request.POST['bio']
-            location = request.POST['location']
-            fname = request.POST['fname']
-            #print("user2 : ", user)
-            #user.profileimg = image
+        if username is not None:
+            user.user.username = username
+        if email is not None:
+            user.user.email = email
+        if fname is not None:
+            user.user.first_name = fname
+        if bio is not None:
             user.bio = bio
-            user.location = location
-            user.save()
+        if profile_img is not None:
+            user.profile_img = profile_img
+        if cover_img is not None:
+            user.cover_img = cover_img
+
+        user.user.save()
+        user.save()
         
         return redirect('settings')
-    #print("user3 : ", user)
+
     return render(request, 'setting.html', {'user_profile': user})
 
-
+@login_required(login_url='signin')
 def profile(request):
     user = request.user
     return render(request, 'profile.html', {'user_profile': user})
-
-def login(request):
-    return render(request, 'login.html')
-
 
 def clan(request):
     return render(request, 'clan.html')

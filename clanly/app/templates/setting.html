@@ -56,9 +56,10 @@
                                         htmlfor="grid-password">
                                         Username
                                     </label>
-                                    <input type="text" disabled
+                                    <input type="text"
+                                        name="username"
                                         class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                        value="{{user_profile.username}}">
+                                        value="{{user_profile.user.username}}">
                                 </div>
                             </div>
                             <div class="w-full lg:w-6/12 px-4">
@@ -67,9 +68,10 @@
                                         htmlfor="grid-password">
                                         Email address
                                     </label>
-                                    <input type="email" disabled
+                                    <input type="email"
+                                        name="email"
                                         class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                        value="{{user_profile.email}}">
+                                        value="{{user_profile.user.email}}">
                                 </div>
                             </div>
                             <div class="w-full lg:w-6/12 px-4 justify-center mx-auto pt-4">
@@ -78,9 +80,10 @@
                                         htmlfor="grid-password">
                                         Name
                                     </label>
-                                    <input type="text" disabled
+                                    <input type="text"
+                                        name="name"
                                         class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                        value="{{user_profile.first_name}}">
+                                        value="{{user_profile.user.first_name}}">
                                 </div>
                             </div>
                         </div>
@@ -98,8 +101,9 @@
                                         About me
                                     </label>
                                     <textarea type="text"
+                                        name="bio"
                                         class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                        rows="4"> About me</textarea>
+                                        rows="4">{{user_profile.bio}}</textarea>
                                 </div>
                             </div>
                             <div class="flex flex-wrap mx-auto py-6">
@@ -109,7 +113,7 @@
                                             htmlfor="grid-password">
                                             Profile Photo
                                         </label>
-                                        <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                                        <input type="file" name="profile_img"  class="form-control-file" id="exampleFormControlFile1">
                                     </div>
                                 </div>
                                 <div class="relative w-full lg:w-6/12 mb-3">
@@ -117,7 +121,7 @@
                                         htmlfor="grid-password">
                                         Cover Photo
                                     </label>
-                                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                                    <input type="file" name="cover_img" class="form-control-file" id="exampleFormControlFile1">
                                 </div>
                             </div>
                         </div>

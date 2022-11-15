@@ -29,7 +29,6 @@ urlpatterns = [
     path('signin/', views.signin, name='signin'),
     path('logout/', views.logout, name='logout'),
     path('profile/', views.profile, name='profile'),
-    path('login/', views.login, name='login'),
     path('clan/', views.clan, name='clan'),
 ]       
 
