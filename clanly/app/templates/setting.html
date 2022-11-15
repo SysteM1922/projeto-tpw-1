@@ -7,7 +7,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{% static 'assets/images/favicon.png' %}" rel="icon" type="image/png">
-    <title>Settings</title>
+    <title>Clanly</title>
+    <link rel="icon" href="{% static 'images/logo_solo.png' %}">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{% static 'assets/css/icons.css' %}">
@@ -37,7 +38,7 @@
                     </div>
                 </div>
                 <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
-                    <form action="" method="POST" enctype="multipart/form-data">
+                    <form action="" method="POST">
                         {% csrf_token %}
                         <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
                             User Information
@@ -56,10 +57,9 @@
                                         htmlfor="grid-password">
                                         Username
                                     </label>
-                                    <input type="text"
-                                        name="username"
+                                    <input type="text" disabled
                                         class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                        value="{{user_profile.user.username}}">
+                                        value="{{user_profile.username}}">
                                 </div>
                             </div>
                             <div class="w-full lg:w-6/12 px-4">
@@ -68,22 +68,20 @@
                                         htmlfor="grid-password">
                                         Email address
                                     </label>
-                                    <input type="email"
-                                        name="email"
+                                    <input type="email" disabled
                                         class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                        value="{{user_profile.user.email}}">
+                                        value="{{user_profile.email}}">
                                 </div>
                             </div>
                             <div class="w-full lg:w-6/12 px-4 justify-center mx-auto pt-4">
                                 <div class="relative w-full mb-3">
                                     <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                                        htmlfor="grid-password">
+                                        htmlfor="grid   -password">
                                         Name
                                     </label>
-                                    <input type="text"
-                                        name="name"
+                                    <input type="text" disabled
                                         class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                        value="{{user_profile.fname}}">
+                                        value="{{user_profile.first_name}}">
                                 </div>
                             </div>
                         </div>
@@ -101,9 +99,8 @@
                                         About me
                                     </label>
                                     <textarea type="text"
-                                        name="bio"
                                         class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                        rows="4">{{user_profile.bio}}</textarea>
+                                        rows="4"> About me</textarea>
                                 </div>
                             </div>
                             <div class="flex flex-wrap mx-auto py-6">
@@ -113,7 +110,7 @@
                                             htmlfor="grid-password">
                                             Profile Photo
                                         </label>
-                                        <input type="file" name="profile_img"  class="form-control-file" id="exampleFormControlFile1">
+                                        <input type="file" class="form-control-file" id="exampleFormControlFile1">
                                     </div>
                                 </div>
                                 <div class="relative w-full lg:w-6/12 mb-3">
@@ -121,7 +118,7 @@
                                         htmlfor="grid-password">
                                         Cover Photo
                                     </label>
-                                    <input type="file" name="cover_img" class="form-control-file" id="exampleFormControlFile1">
+                                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
                                 </div>
                             </div>
                         </div>
@@ -159,7 +156,7 @@
                                     </label>
                                     <input type="password"
                                         class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                        name="password3" placeholder="Password">
+                                        name="password" placeholder="Password">
                                 </div>
                             </div>
                         </div>
