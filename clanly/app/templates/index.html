@@ -33,9 +33,12 @@
             </span>
         </div>
         <div class="text-right border-0 border-purple-500/100 w-96">
-            <input type="search" name="search"
-            class=" px-10 py-3 placeholder-purple-300 text-blueGray-600 bg-purple-100 rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-            placeholder="                       Search for a Clan or a User">
+            <form>
+                <input type="search" name="search"
+                    class=" px-10 py-3 placeholder-purple-300 text-blueGray-600 bg-purple-100 rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                    placeholder="                       Search for a Clan or a User">
+                <input type="submit" method="POST" hidden />
+            </form>
         </div>
         <div class="mt-2">
             <span class="w-10 relative float-right mr-3 cursor-pointer hover:text-gray-700">
@@ -97,13 +100,18 @@
                                     <div id="accordion-flush-body-1" class=""
                                         aria-labelledby="accordion-flush-heading-1">
                                         <div class="py-5 font-light border-b border-gray-200 dark:border-gray-700">
-                                            <span class="font-medium mr-2">razzle_dazzle</span> Dude! How cool! I went to New
-                                            Zealand last summer and had a blast taking the tour! So much to see! Make sure you bring
+                                            <span class="font-medium mr-2">razzle_dazzle</span> Dude! How cool! I went
+                                            to New
+                                            Zealand last summer and had a blast taking the tour! So much to see! Make
+                                            sure you bring
                                             a good camera when you go!
                                         </div>
-                                        <input type="text" name="username"
-                                        class="border-0 px-3 py-3 placeholder-purple-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                        placeholder="Comment on this post">
+                                        <form>
+                                            <input type="text" name="username"
+                                                class="border-0 px-3 py-3 placeholder-purple-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                                placeholder="Comment on this post">
+                                            <input type="submit" method="POST" hidden />
+                                        </form>
                                     </div>
                                 </div>
                             </div>
