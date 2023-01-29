@@ -1,62 +1,43 @@
-{% load static %}
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Clanly</title>
-  <link rel="icon" href="{% static 'images/logo_solo.png' %}">
   <meta charset="utf-8">
+  <title>Clanly</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="{% static 'assets/css/icons.css' %}">
-  <link rel="stylesheet" href="{% static 'assets/css/uikit.css' %}">
-  <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
-  <link rel="stylesheet" href="{% static 'assets/css/tailwind.css' %}">
+  <link rel="icon" type="image/x-icon" href="assets/logo_solo.png"> 
+  <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.5/dist/flowbite.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
   <link rel="stylesheet" href="https://unpkg.com/flowbite@latest/dist/flowbite.min.css" />
+  <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css">
+  <link rel="stylesheet"
+    href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
 </head>
-<body>
-  <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css">
-  <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
 
-
-  <div class="pt-6 bg-purple-600 h-80% mt-auto pb-10">
-    <div class="w-full lg:w-6/12 px-4 mx-auto mt-5 size"> <img src="{% static 'images/logo-no-background.png' %}">
+<body class="content h-screen bg-purple-800">
+  <div class="pt-6 bg-purple-800 mt-auto pb-10">
+    <div class="w-11/12 lg:w-6/12 mx-auto mt-5 size lg:mt-10 animate-[pulse_4s_infinite_ease-in-out]"
+      data-aos="zoom-in-down" data-aos-delay="100" duration="50"> <img src="../static/images/logo-no-background.png"
+        alt="logo">
     </div>
-    <div class="w-full lg:w-6/12 px-4 mx-auto mt-10">
+    <div class=" lg:w-3/12 px-4 mx-auto mt-10" data-aos="fade-up" data-aos-delay="100" duration="500"
+      delay="500">
       <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
         <div class="rounded-t bg-white mb-0 px-6 py-4">
           <div class="text-center flex justify-between">
-            <h6 class="text-blueGray-700 text-xl font-bold">
+            <h6 class="text-purple-800 text-xl font-bold">
               Sign In
             </h6>
           </div>
         </div>
         <div class="flex-auto px-4 lg:px-10 py-10 pt-0 ">
-          <form action="" method="POST">{% csrf_token %}
-            <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
-              User Information
-            </h6> <div>
-                    <style>
-                        h5{
-                            color: red;
-                        }
-                    </style>
-                    {% for message in messages %}
-                    <h5>{{message}}</h5>
-                    {% endfor %}
-                </div>
-
-            <div class="mx-auto text-right">
-              <button
-                class="bg-purple-500 text-white active:bg-purple-500 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                type="submit">
-                Sign In
-              </button>
+          <form action="" method="POST">
+            <div class="mx-auto text-right pt-3">
             </div>
-            <div class="flex flex-wrap">
-              <div class="w-full lg:w-6/12 px-4">
+            <div class="flex flex-col">
+              <div class="w-full lg:w-12/12 px-4">
                 <div class="relative w-full mb-3">
                   <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
                     Username
@@ -66,7 +47,7 @@
                     placeholder="Username">
                 </div>
               </div>
-              <div class="w-full lg:w-6/12 px-4">
+              <div class="w-full lg:w-12/12 px-4">
                 <div class="relative w-full mb-3">
                   <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
                     Password
@@ -76,15 +57,26 @@
                     placeholder="Password">
                 </div>
               </div>
+              <button
+                class="mt-2 mx-auto bg-purple-800 text-white active:bg-purple-500 font-bold uppercase text-l w-full py-2 rounded shadow-lg hover:bg-purple-800 hover:animate-pulse outline-none focus:outline-none mb-1 ease-linear transition-all duration-150"
+                type="submit">
+                Sign In
+              </button>
             </div>
           </form>
-          <div class="mx-auto mt-3 mb-0 text-center">
-            <a href="{% url 'signup' %}" class="text-blueGray-600">Sign Up</a>
+          <div class=" mt-4 mb-0 text-center">
+            <a href="" class="text-blueGray-600 hover:underline">Sign Up</a>
           </div>
         </div>
       </div>
     </div>
-    <div class="py-10 bg-purple-600 h-full"></div>
   </div>
+  <script src="https://unpkg.com/flowbite@1.5.5/dist/flowbite.js"></script>
+  <script src="https://unpkg.com/flowbite@1.5.5/dist/datepicker.js"></script>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
 </body>
+
 </html>
