@@ -89,7 +89,7 @@
             <div class="space-y-5 flex-shrink-0 lg:w-8/12">
                 <div class="mx-auto lg:w-100%"> <img class="mx-auto" src="{% static 'images/logo-no-background.png' %}">
                 </div>
-                <!-- post 1-->
+
                 <div class=" rounded-lg overflow-hidden w-full lg:w-12/12 md:w-6/12 bg-purple-600 mx-auto">
                     <div class="w-full flex justify-center p-3">
                         <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
@@ -116,7 +116,6 @@
                                 </thead>
                                 <tbody>
                                     {% for c in clans %}
-
                                     <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
                                         <th scope="row"
                                             class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white text-left">
@@ -133,8 +132,8 @@
 
                                         </td>
                                         <td class="py-4 px-6 text-center">
-                                            <i class=" text-2xl fa fa-wrench mr-2" data-tooltip-target="tooltip-post"
-                                                data-modal-toggle="clan-modal"></i>
+                                            <a href="/edit_clan/{{ c.id }}"><i class=" text-2xl fa fa-wrench mr-2" data-tooltip-target="tooltip-post"
+                                                data-modal-toggle="clan-modal"></i></a>
                                         </td>
                                     </tr>
                                     <div id="clan-modal" tabindex="-1" aria-hidden="true"
@@ -150,7 +149,7 @@
                                                 </div>
                                             </div>
                                             <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
-                                                <form action="/edit_clan/{{c.id}}" method="POST">
+                                                <form action="" method="POST">
                                                     {% csrf_token %}
                                                     <div class="mx-auto text-center pt-4">
                                                         <button

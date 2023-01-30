@@ -165,8 +165,10 @@ def unfollow_clan(request, id=None):
     return redirect('clan', id=id)
 
 @login_required(login_url='signin')
-def edit_clan(request):
-    if request.method == 'POST':
+def edit_clan(request, id):
+    print("request: ", request.method)
+    print("id: ", id)
+    if request.method == 'GET':
         id = request.POST.get('id', None)
         name = request.POST.get('name', None)
         description = request.POST.get('description', None)
@@ -221,7 +223,7 @@ def create_clan(request):
         return redirect('clan', id=community.id)
 
 @login_required(login_url='signin')
-def c_clan(request):
+def c_clan(request, c_id):
     return render(request, 'edit_clan.html')
 
 @login_required(login_url='signin')
