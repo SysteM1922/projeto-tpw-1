@@ -206,10 +206,9 @@
                 <select id="underline_select"
                   class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-white border-1 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
                   <option selected>Choose a Clan</option>
-                  <option value="1">Clan 1</option>
-                  <option value="2">Clan 2</option>
-                  <option value="3">Clan 3</option>
-                  <option value="4">Clan 4</option>
+                      {% for clan in clans %}
+                          <option value="1">{{ clan.name }}</option>
+                      {% endfor %}
                 </select>
               </div>
             </div>

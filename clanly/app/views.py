@@ -281,17 +281,3 @@ def create_comment_index(request, id=None):
         comment = Comment(content=request.POST.get('content', None), user=request.user, post=post, created_at=datetime.now(), updated_at=datetime.now())
         comment.save()
         return redirect('index')
-
-
-
-
-
-
-
-
-
-
-
-
-
-

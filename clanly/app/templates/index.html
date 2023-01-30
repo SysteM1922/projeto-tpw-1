@@ -143,13 +143,15 @@
                                         {% endif %}
                                         {% endfor %}
                                         <div class="w-20% px-3 mt-2 ">
-                                            <form action="/c/{{clan.id_community}}" method="post">{% csrf_token %}
+
+                                            <form action="/c/{{post.id_post}}" method="post">{% csrf_token %}
                                                 <input type="text" name="content"
                                                     class="border-0 px-3 py-3 placeholder-purple-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                                     placeholder="Comment on this post">
                                                 <input type="submit" method="POST" hidden />
                                             </form>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -218,10 +220,10 @@
                                 <select id="underline_select"
                                     class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-white border-1 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
                                     <option selected>Choose a Clan</option>
-                                    <option value="1">Clan 1</option>
-                                    <option value="2">Clan 2</option>
-                                    <option value="3">Clan 3</option>
-                                    <option value="4">Clan 4</option>
+                                    {% for clan in clans %}
+                                        <option value="1">{{ clan.name }}</option>
+                                    {% endfor %}
+
                                 </select>
                             </div>
                         </div>

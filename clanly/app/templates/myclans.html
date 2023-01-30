@@ -120,7 +120,7 @@
                                     <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
                                         <th scope="row"
                                             class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white text-left">
-                                            <a href="/clan/{{c.id_community}}"
+                                            <a href="/clan/{{c.id}}"
                                                 class="font-medium text-purple-600 dark:text-blue-500 hover:underline">c/{{c.name}}</a>
                                         </th>
                                         <td class="py-4 px-6">
@@ -150,7 +150,7 @@
                                                 </div>
                                             </div>
                                             <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
-                                                <form action="/edit_clan/{{c.id_community}}" method="POST">
+                                                <form action="/edit_clan/{{c.id}}" method="POST">
                                                     {% csrf_token %}
                                                     <div class="mx-auto text-center pt-4">
                                                         <button
@@ -267,10 +267,9 @@
                             <select id="underline_select"
                                 class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-white border-1 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
                                 <option selected>Choose a Clan</option>
-                                <option value="1">Clan 1</option>
-                                <option value="2">Clan 2</option>
-                                <option value="3">Clan 3</option>
-                                <option value="4">Clan 4</option>
+                                {% for clan in clans %}
+                                    <option value="1">{{ clan.name }}</option>
+                                {% endfor %}
                             </select>
                         </div>
                     </div>

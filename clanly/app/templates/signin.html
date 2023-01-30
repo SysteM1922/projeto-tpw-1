@@ -33,7 +33,7 @@
           </div>
         </div>
         <div class="flex-auto px-4 lg:px-10 py-10 pt-0 ">
-          <form action="" method="POST">
+          <form action="" method="POST">{% csrf_token %}
             <div class="mx-auto text-right pt-3">
             </div>
             <div class="flex flex-col">
@@ -65,7 +65,7 @@
             </div>
           </form>
           <div class=" mt-4 mb-0 text-center">
-            <a href="" class="text-blueGray-600 hover:underline">Sign Up</a>
+            <a href="{% url 'signup' %}" class="text-blueGray-600">Sign Up</a>
           </div>
         </div>
       </div>
