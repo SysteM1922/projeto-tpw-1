@@ -131,17 +131,17 @@
                                                 <i class="fa fa-comment cursor-pointer mr-1"></i>
                                                 <span class="text-sm text-gray-400 font-medium">Comments</span>
                                             </button>
-                                        </h2>
+                                        </h2> <div id="accordion-flush-body-1" class=""
+                                            aria-labelledby="accordion-flush-heading-1">
                                         {% for comment in comments %}
                                         {% if comment.post == post %}
-                                        <div id="accordion-flush-body-1" class=""
-                                            aria-labelledby="accordion-flush-heading-1">
+
                                             <div class="py-5 font-light border-b border-gray-200 dark:border-gray-700 ">
                                                 <span class="font-medium mr-2">{{comment.user}}</span>{{comment.content}}
                                             </div>
-                                        </div>
+
                                         {% endif %}
-                                        {% endfor %}
+                                        {% endfor %}</div>
                                         <div class="w-20% px-3 mt-2 ">
 
                                             <form action="/c/{{post.id_post}}" method="post">{% csrf_token %}
