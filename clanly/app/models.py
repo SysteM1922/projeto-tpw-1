@@ -18,7 +18,7 @@ class Profile(models.Model):
 
 class Community(models.Model):
     name = models.CharField(max_length=100)
-    id = models.AutoField(primary_key=True)
+    id_community = models.AutoField(primary_key=True)
     description = models.TextField(blank=True)
     communityimg = models.ImageField(upload_to='community_images/', default='blank-profile-picture.png')
     background = models.ImageField(upload_to='community_images/', default='blank-profile-picture.png')
@@ -57,5 +57,4 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.content
-
 
