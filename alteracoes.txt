@@ -1,0 +1,41 @@
+-------------  Projeto 1 -------------
+
+ALTERAÇÕES:
+	
+> Resolvemos alguns bugs:
+	> relativamente à edição de posts/clans;
+	> relativos a ids de posts e clans, que poderia eventualmente redirecionar para uma página de erro (erroneamente)
+
+> Implementámos a pesquisa, que não tinha sido implementada na época normal;
+
+---
+
+User Stories (Extra) - tem em conta a edição e pesquisa de clans.
+
+
+## Scenario
+
+In order to do this she uses Clanly to create a new Clan: CatLovers.
+
+First off, shes creates a new account by clicking on Sign Up, filling out her information accordingly.
+
+Nextly, shes signs in with her newly created credentials.
+
+Seeing her timeline, she clicks on the Menu button in order to reveal the My Clans option, that will take her to the My Clans page.
+
+On this page, she uses the button assigned to creating a new Clan and fills out the information to her suiting.
+
+She now returns to the My Clans page, clicking on the CatLovers clan in order to access it's Clan page.
+
+She follows CatLovers and returns to her timeline where she is greeted with the CatLovers Clan section, where posts on this Clan will appear.
+
+Speaking of posts, she once again clicks on the Menu button on the navigation bar, but this time shes selects the option to create a Post.
+
+She then decides to modify the clan's description and the clan's image to something more insightful. (Edit clan)
+
+She writes a welcome message and selects CatLovers as the Clan where she wants the post to appear in.
+
+She then decides to update the post, changing the post's description.
+
+Finally, she selects the Profile option in the Menu context bar and clicks on Edit, in order to change her profile picture to her cat, Whiskers.
+
