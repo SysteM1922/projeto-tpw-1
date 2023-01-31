@@ -1,4 +1,5 @@
 from datetime import datetime
+from itertools import chain
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -8,7 +9,6 @@ from django.shortcuts import redirect, render
 
 from .models import Comment, Community, Post, Profile
 
-
 # Create your views here.
 
 @login_required(login_url='signin')
@@ -17,7 +17,6 @@ def index(request):
     posts = Post.objects.all()
     comments = Comment.objects.all()
     return render(request, 'index.html', {'clans': clans, 'posts': posts, 'comments': comments})
-
 
 def signup(request):
     if request.method == 'POST':
@@ -49,12 +48,12 @@ def signup(request):
         else:
             messages.info(request, 'Password Not Matching')
             return redirect('signup')
-
+        
     else:
         return render(request, 'signup.html')
 
-
 def signin(request):
+
     if not request.user.is_authenticated:
 
         if request.method == 'POST':
@@ -76,12 +75,10 @@ def signin(request):
     else:
         return redirect('settings')
 
-
 @login_required(login_url='signin')
 def logout(request):
     auth.logout(request)
     return redirect('signin')
-
 
 @login_required(login_url='signin')
 def settings(request):
@@ -109,6 +106,7 @@ def settings(request):
         if cover_img is not None:
             user.cover_img = cover_img
 
+
         if user.user.check_password(request.POST.get("password", None)):
             password2 = request.POST.get('password2', None)
             password3 = request.POST.get('password3', None)
@@ -121,11 +119,10 @@ def settings(request):
 
         user.user.save()
         user.save()
-
+        
         return redirect('profile')
 
     return render(request, 'setting.html', {'user_profile': user})
-
 
 @login_required(login_url='signin')
 def profile(request):
@@ -136,16 +133,14 @@ def profile(request):
     posts = Post.objects.filter(author=request.user).count()
     return render(request, 'profile.html', {'user_profile': user, "clans": clans, "comments": comments, "posts": posts})
 
-
 @login_required(login_url='signin')
 def myclans(request):
     clans = Community.objects.filter(admins=request.user)
-    return render(request, 'myclans.html', {"clans": clans})
-
+    return render(request, 'myclans.html', {"clans":clans})
 
 @login_required(login_url='signin')
 def clan(request, id=None):
-    community = Community.objects.get(id_community=id)
+    community = Community.objects.get(id=id)
     posts = Post.objects.filter(community=community)
     n_posts = posts.count()
     followers = len(community.members.all())
@@ -154,49 +149,47 @@ def clan(request, id=None):
     bol = 1
     if request.user in community.members.all():
         bol = 0
-    return render(request, 'clan.html',
-                  {"followers": followers, "n_posts": n_posts, "id": id, "clan": community, "posts": posts,
-                   "comments": comments, "bol": bol, "user": request.user, "clans": clans})
-
+    return render(request, 'clan.html', {"followers": followers, "n_posts": n_posts, "id": id, "clan": community, "posts": posts, "comments": comments, "bol": bol, "user": request.user, "clans": clans})
 
 @login_required(login_url='signin')
 def follow_clan(request, id=None):
-    community = Community.objects.get(id_community=id)
+    community = Community.objects.get(id=id)
     community.members.add(request.user)
     community.save()
     return redirect('clan', id=id)
 
-
 @login_required(login_url='signin')
 def unfollow_clan(request, id=None):
-    community = Community.objects.get(id_community=id)
+    community = Community.objects.get(id=id)
     community.members.remove(request.user)
     community.save()
     return redirect('clan', id=id)
 
-
 @login_required(login_url='signin')
-def edit_clan(request):
+def update(request, id):
+    community = Community.objects.get(id=id)
+
     if request.method == 'POST':
-        id = request.POST.get('id', None)
-        name = request.POST.get('name', None)
-        description = request.POST.get('description', None)
+        description = request.POST.get('content', None)
         communityimg = request.FILES.get('communityimg', None)
         backgroundimg = request.FILES.get('backgroundimg', None)
-        community = Community.objects.get(id_community=id)
-        if name is not None:
-            community.name = name
+
         if description is not None:
             community.description = description
         if communityimg is not None:
             community.communityimg = communityimg
         if backgroundimg is not None:
-            community.backgroundimg = backgroundimg
+            community.background = backgroundimg
         community.updated = datetime.now()
         community.save()
         return redirect('myclans')
     else:
         return redirect('index')
+
+@login_required(login_url='signin')
+def edit_clan(request, id):
+    clan = Community.objects.get(id=id)
+    return render(request, 'edit_clan.html', {'clan' : clan})
 
 
 @login_required(login_url='signin')
@@ -205,23 +198,19 @@ def create_post(request):
         title = request.POST.get('title', None)
         description = request.POST.get('content', None)
         id = request.POST.get('clan', None)
-        community = Community.objects.get(id_community=id)
-        post = Post(title=title, description=description, author=request.user, community=community,
-                    created=datetime.now(), updated=datetime.now())
+        community = Community.objects.get(id=id)
+        post = Post(title=title, description=description, author=request.user, community=community, created=datetime.now(), updated=datetime.now())
         post.save()
         return redirect('clan', id=id)
     return render(request, 'create_post.html')
-
 
 @login_required(login_url='signin')
 def create_comment(request, id=None):
     if request.method == 'POST':
         post = Post.objects.get(id_post=id)
-        comment = Comment(content=request.POST.get('content', None), user=request.user, post=post,
-                          created_at=datetime.now(), updated_at=datetime.now())
+        comment = Comment(content=request.POST.get('content', None), user=request.user, post=post, created_at=datetime.now(), updated_at=datetime.now())
         comment.save()
-        return redirect('clan', id=post.community.id_community)
-
+        return redirect('clan', id=post.community.id)
 
 @login_required(login_url='signin')
 def create_clan(request):
@@ -230,47 +219,40 @@ def create_clan(request):
         description = request.POST.get('content', None)
         communityimg = request.FILES.get('communityimg', None)
         background = request.FILES.get('background', None)
-        community = Community.objects.create(name=name, description=description, communityimg=communityimg,
-                                             background=background, created=datetime.now(), updated=datetime.now(),
-                                             private=False)
+        community = Community.objects.create(name=name, description=description, communityimg=communityimg, background=background, created=datetime.now(), updated=datetime.now(), private=False)
         community.save()
         community.admins.add(request.user)
         community.save()
-        return redirect('clan', id=community.id_community)
-
+        return redirect('clan', id=community.id)
 
 @login_required(login_url='signin')
 def c_clan(request):
-    return render(request, 'edit_clan.html')
-
+    return render(request, 'create_clan.html')
 
 @login_required(login_url='signin')
 def delete_clan(request, id=None):
-    community = Community.objects.get(id_community=id)
+    community = Community.objects.get(id=id)
     if request.user == community.admin:
         community.delete()
         return redirect('index')
     return redirect('clan', id=id)
 
-
 @login_required(login_url='signin')
 def delete_post(request, id=None):
     post = Post.objects.get(id_post=id)
     if request.user == post.author:
-        community = Community.objects.get(id_community=post.community.id_community)
+        community = Community.objects.get(id=post.community.id)
         post.delete()
-    return redirect('clan', id=community.id_community)
-
+    return redirect('clan', id=community.id)
 
 @login_required(login_url='signin')
 def delete_comment(request, id=None):
     comment = Comment.objects.get(id_comment=id)
     if request.user == comment.user:
         post = Post.objects.get(id_post=comment.post.id_post)
-        community = Community.objects.get(id_community=post.community.id_community)
+        community = Community.objects.get(id=post.community.id)
         comment.delete()
-    return redirect('clan', id=community.id_community)
-
+    return redirect('clan', id=community.id)
 
 @login_required(login_url='signin')
 def edit_post(request, id=None):
@@ -281,10 +263,9 @@ def edit_post(request, id=None):
             post.description = request.POST.get('content', None)
             post.updated = datetime.now()
             post.save()
-            return redirect('clan', id=post.community.id_community)
+            return redirect('clan', id=post.community.id)
         return render(request, 'edit_post.html', {"post": post})
-    return redirect('clan', id=post.community.id_community)
-
+    return redirect('clan', id=post.community.id)
 
 @login_required(login_url='signin')
 def edit_comment(request, id=None):
@@ -294,21 +275,39 @@ def edit_comment(request, id=None):
             comment.content = request.POST.get('content', None)
             comment.updated_at = datetime.now()
             comment.save()
-            return redirect('clan', id=comment.post.community.id_community)
+            return redirect('clan', id=comment.post.community.id)
         return render(request, 'edit_comment.html', {"comment": comment})
-    return redirect('clan', id=comment.post.community.id_community)
-
+    return redirect('clan', id=comment.post.community.id)
 
 @login_required(login_url='signin')
 def create_comment_index(request, id=None):
     if request.method == 'POST':
         post = Post.objects.get(id_post=id)
-        comment = Comment(content=request.POST.get('content', None), user=request.user, post=post,
-                          created_at=datetime.now(), updated_at=datetime.now())
+        comment = Comment(content=request.POST.get('content', None), user=request.user, post=post, created_at=datetime.now(), updated_at=datetime.now())
         comment.save()
         return redirect('index')
 
 
+
+@login_required(login_url='signin')
+def search(request):
+
+    if request.method == 'POST':
+        clan_name = request.POST['search_name']
+        clan_obj = Community.objects.filter(name__icontains=clan_name)
+
+        clans = []
+        clans_lst = []
+
+        for c in clan_obj:
+            clans.append(c.id)
+
+        for ids in clans:
+            clans_ = Community.objects.filter(id=ids)
+            clans_lst.append(clans_)
+
+        clans_lst = list(chain(*clans_lst))
+    return render(request, 'search.html', {'clans': clans_lst, 'search': clan_name})
 
 
 

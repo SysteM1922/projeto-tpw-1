@@ -29,6 +29,7 @@ urlpatterns = [
     path('signin/', views.signin, name='signin'),
     path('logout/', views.logout, name='logout'),
     path('profile/', views.profile, name='profile'),
+    path('search/', views.search, name='search'),
     path('clan/<int:id>', views.clan, name='clan'),
     path('edit_clan/c', views.create_clan, name='create_clan'),
     path('create_clan/', views.c_clan, name='create_clan'),
@@ -42,6 +43,7 @@ urlpatterns = [
     path('clan/post/<int:id>/e', views.edit_comment, name='edit_comment'),
     path('myclans/', views.myclans, name='myclans'),
     path('edit_clan/<int:id>', views.edit_clan, name='edit_clan'),
+    path('update/<int:id>', views.update, name='update'),
     path('myclans/', views.myclans, name='delete_clan'),
     path('c/<int:id>', views.create_comment_index, name='create_comment_index'),
 ]       
