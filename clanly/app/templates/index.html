@@ -24,64 +24,7 @@
 </head>
 
 <body>
-    <link rel="stylesheet" href="https://unpkg.com/flowbite@latest/dist/flowbite.min.css" />
-
-
-    <div class="p-4 w-80% lg:w-1/2 bg-purple-600">
-        <!--light mode - text and icons-->
-        <div class="p-2 text-gray-900 bg-white rounded-lg font-medium capitalize flex flex-wrap justify-between">
-            <div class="pt-1">
-                <a href="{% url 'index' %}">
-                    <span class="px-2 mr-2 border-r border-gray-800 ml-0 pb-0">
-                        <img src="{% static 'images/logo_solo.png' %}" alt="alt placeholder"
-                            class="w-9 h-10 -mt-0 inline mx-auto">
-                    </span>
-                </a>
-            </div>
-            <div class="text-right border-0 border-purple-500/100 w-96">
-                <form method="POST" action="/search/"> {% csrf_token %}
-                    <input type="search" name="search_name"
-                        class=" px-10 py-3 placeholder-purple-300 text-blueGray-600 bg-purple-100 rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                        placeholder="                       Search for a Clan">
-                    <input type="submit" method="POST" hidden />
-                </form>
-            </div>
-            <div class="mt-1">
-                <button id="dropdownDividerButton" data-dropdown-toggle="dropdownDivider"
-                    class="my-auto text-white bg-purple-500 hover:bg-purple-500 focus:ring-4 focus:outline-none focus:ring-purple-500 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-purple-500 dark:hover:bg-purple-500 dark:focus:ring-purple-500"
-                    type="button">Menu <svg class="ml-2 w-4 h-4" aria-hidden="true" fill="none" stroke="currentColor"
-                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                    </svg></button>
-                <!-- Dropdown menu -->
-                <div id="dropdownDivider"
-                    class="hidden z-10 w-24 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
-                    <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDividerButton">
-                        <li>
-                            <a href="{% url 'profile' %}"
-                                class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Profile</a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                                data-modal-toggle="post-modal-create">New
-                                Post</a>
-                        </li>
-                        <li>
-                            <a href="{% url 'myclans' %}"
-                                class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">My
-                                Clans</a>
-                        </li>
-                    </ul>
-                    <div class="py-1">
-                        <a href="{% url 'logout' %}"
-                            class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Logout</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    {% include 'navbar.html' %}
     <div class="w-100% bg-purple-600 pb-20 mb-20">
         <div class="container m-auto">
             <!--<h1 class="lg:text-2xl text-lg font-extrabold leading-none text-gray-900 tracking-tight mb-5"> Feed </h1>--->
@@ -94,16 +37,16 @@
                     </div>
                     {% for clan in clans %}
                     <div class=" rounded-lg overflow-hidden border w-full lg:w-12/12 md:w-12/12 bg-white mx-auto">
-                        <div class="w-full flex justify-between p-3">
+                        <div class="w-full flex justify-between p-3 relative">
+                            <a href="/clan/{{ clan.id }}">
                             <div class="flex">
-                                <a href="/clan/{{ clan.id }}">
                                 <div
                                     class="rounded-full h-8 w-8 bg-gray-500 flex items-center justify-center overflow-hidden">
-                                    <img src="{{ clan.communityimg.url}}" alt="profilepic">
+                                    <img src="{{clan.communityimg.url}}" alt="profilepic">
                                 </div>
                                 <span class="pt-1 ml-2 font-bold text-sm">c/{{clan.name}}</span>
-                                    </a>
                             </div>
+                            </a>
                         </div>
                         {% for post in posts %}
                         {% if post.community == clan %}
@@ -139,7 +82,8 @@
                                         <div id="accordion-flush-body-1" class=""
                                             aria-labelledby="accordion-flush-heading-1">
                                             <div class="py-5 font-light border-b border-gray-200 dark:border-gray-700 ">
-                                                <span class="font-medium mr-2">{{comment.user}}</span>{{comment.content}}
+                                                <span
+                                                    class="font-medium mr-2">{{comment.user}}</span>{{comment.content}}
                                             </div>
                                         </div>
                                         {% endif %}
@@ -164,171 +108,6 @@
             </div>
         </div>
     </div>
-    <!-- Main modal -->
-    <div id="post-modal-create" tabindex="-1" aria-hidden="true"
-        class="hidden overflow-y-auto overflow-x-hidden fixed z-50 md:inset-0 h-modal md:h-50%">
-        <div
-            class="relative flex flex-col min-w-0 break-words w-8/12 mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
-            <div class="rounded-t bg-white mb-0 px-6 py-6">
-                <div class="text-center flex justify-between">
-                    <h6 class="text-blueGray-700 text-xl font-bold">
-                        New Post
-                    </h6>
-
-                </div>
-            </div>
-            <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
-                <form action="" method="POST">
-                    {% csrf_token %}
-                    <div class="mx-auto text-center pt-4">
-                        <button
-                            class="bg-purple-500 text-white active:bg-purple-500 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                            type="submit">
-                            Post
-                        </button>
-                    </div>
-                    <div class="flex flex-wrap">
-                        <div class="w-full lg:w-12/12 px-4">
-                            <div class="relative w-full mb-3">
-                                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                                    htmlfor="grid-password">
-                                    Title
-                                </label>
-                                <textarea type="text"
-                                    class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                    rows="4">Title</textarea>
-                            </div>
-                        </div>
-                        <div class="w-full lg:w-12/12 px-4">
-                            <div class="relative w-full mb-3">
-                                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                                    htmlfor="grid-password">
-                                    Content
-                                </label>
-                                <textarea type="text"
-                                    class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                    rows="4">Content</textarea>
-                            </div>
-                        </div>
-                        <div class="w-full lg:w-12/12 px-4">
-                            <div class="relative w-full mb-3">
-                                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                                    htmlfor="grid-password">
-                                    Clan
-                                </label>
-                                <label for="underline_select" class="sr-only">Underline select</label>
-                                <select id="underline_select"
-                                    class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-white border-1 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
-                                    <option selected>Choose a Clan</option>
-                                    {% for c in clans %}
-                                        <option value="{{ c.id }}">{{ c.name}}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div id="post-modal" tabindex="-1" aria-hidden="true"
-        class="hidden overflow-y-auto overflow-x-hidden fixed z-50 md:inset-0 h-modal md:h-50%">
-        <div
-            class="relative flex flex-col min-w-0 break-words w-8/12 mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
-            <div class="rounded-t bg-white mb-0 px-6 py-6">
-                <div class="text-center flex justify-between">
-                    <h6 class="text-blueGray-700 text-xl font-bold">
-                        Edit Post
-                    </h6>
-
-                </div>
-            </div>
-            <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
-                <form action="" method="POST">
-                    {% csrf_token %}
-                    <div class="mx-auto text-center pt-4">
-                        <button
-                            class="bg-purple-500 text-white active:bg-purple-500 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                            type="submit">
-                            Save
-                        </button>
-                    </div>
-
-                    <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
-                        Edit Post
-                    </h6>
-                    <div class="flex flex-wrap">
-                        <div class="w-full lg:w-12/12 px-4">
-                            <div class="relative w-full mb-3">
-                                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                                    htmlfor="grid-password">
-                                    Title
-                                </label>
-                                <textarea type="text"
-                                    class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                    rows="4">Title</textarea>
-                            </div>
-                        </div>
-                        <div class="w-full lg:w-12/12 px-4">
-                            <div class="relative w-full mb-3">
-                                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                                    htmlfor="grid-password">
-                                    Content
-                                </label>
-                                <textarea type="text"
-                                    class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                    rows="4">Content</textarea>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div id="comment-modal" tabindex="-1" aria-hidden="true"
-        class="hidden overflow-y-auto overflow-x-hidden fixed z-50 md:inset-0 h-modal md:h-full">
-        <div
-            class="relative flex flex-col min-w-0 break-words w-12/12 mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
-            <div class="rounded-t bg-white mb-0 px-6 py-6">
-                <div class="text-center flex justify-between">
-                    <h6 class="text-blueGray-700 text-xl font-bold">
-                        Edit Comment
-                    </h6>
-
-                </div>
-            </div>
-            <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
-                <form action="" method="POST">
-                    {% csrf_token %}
-                    <div class="mx-auto text-center pt-4">
-                        <button
-                            class="bg-purple-500 text-white active:bg-purple-500 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                            type="submit">
-                            Save
-                        </button>
-                    </div>
-
-                    <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
-                        Edit Comment
-                    </h6>
-                    <div class="w-full lg:w-12/12 px-4">
-                        <div class="relative w-full mb-3">
-                            <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                                htmlfor="grid-password">
-                                Content
-                            </label>
-                            <textarea type="text"
-                                class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                rows="4">Content</textarea>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    </div>
-
-
     <!-- Scripts
     ================================================== -->
     <script src="{% static 'assets/js/tippy.all.min.js' %}"></script>
@@ -336,9 +115,6 @@
     <script src="{% static 'assets/js/uikit.js' %}"></script>
     <script src="{% static 'assets/js/simplebar.js' %}"></script>
     <script src="{% static 'assets/js/custom.js' %}"></script>
-
-
-    <script src="{% static '../../unpkg.com/ionicons%405.2.3/dist/ionicons.js' %}"></script>
     <script src="https://unpkg.com/flowbite@latest/dist/flowbite.js"></script>
 </body>
 

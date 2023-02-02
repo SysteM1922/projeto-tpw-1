@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User, auth
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
+from django.contrib.messages.storage.fallback import FallbackStorage
 
 from .models import Comment, Community, Post, Profile
 
@@ -19,38 +20,48 @@ def index(request):
     return render(request, 'index.html', {'clans': clans, 'posts': posts, 'comments': comments})
 
 def signup(request):
-    if request.method == 'POST':
-        username = request.POST['username']
-        email = request.POST['email']
-        fname = request.POST['fname']
-        password = request.POST['password']
-        password2 = request.POST['password2']
 
-        if password == password2:
-            if User.objects.filter(email=email).exists():
-                print("email taken")
-                messages.info(request, 'Email Taken')
+    if not request.user.is_authenticated:
+        if request.method == 'POST':
+            username = request.POST['username']
+            email = request.POST['email']
+            fname = request.POST['fname']
+            password = request.POST['password']
+            password2 = request.POST['password2']
+
+            if User.objects.filter(username=username).exists():
+                messages.error(request, 'Username Taken')
                 return redirect('signup')
-            elif User.objects.filter(username=username).exists():
-                print("username taken")
-                messages.info(request, 'Username Taken')
+
+            if len(password2) < 8:
+                messages.error(request, 'Password Too Short')
                 return redirect('signup')
+            elif password == password2:
+                if User.objects.filter(email=email).exists():
+                    messages.error(request, 'Email Taken')
+                    return redirect('signup')
+                elif User.objects.filter(username=username).exists():
+                    messages.error(request, 'Username Taken')
+                    return redirect('signup')
+                else:
+                    user = User.objects.create_user(username=username, email=email, password=password)
+                    user.save()
+
+                    # create a Profile object for the new user
+                    profile = Profile(user=user, id_user=user.id, fname=fname)
+                    profile.save()
+
+                    messages.info(request, 'User Created')
+                    return redirect('signin')
             else:
-                user = User.objects.create_user(username=username, email=email, password=password)
-                user.save()
+                messages.error(request, 'Password Not Matching')
+                return redirect('signup')
 
-                # create a Profile object for the new user
-                profile = Profile(user=user, id_user=user.id, fname=fname)
-                profile.save()
-
-                messages.info(request, 'User Created')
-                return redirect('signin')
         else:
-            messages.info(request, 'Password Not Matching')
-            return redirect('signup')
-        
+            return render(request, 'signup.html')
+
     else:
-        return render(request, 'signup.html')
+        return redirect('/')
 
 def signin(request):
 
@@ -62,7 +73,7 @@ def signin(request):
 
             user = auth.authenticate(username=username, password=password)
 
-            if user is not None:
+            if user:
                 auth.login(request, user)
                 return redirect('/')
             else:
@@ -73,7 +84,7 @@ def signin(request):
             return render(request, 'signin.html')
 
     else:
-        return redirect('settings')
+        return redirect('/')
 
 @login_required(login_url='signin')
 def logout(request):
@@ -92,34 +103,57 @@ def settings(request):
         bio = request.POST.get('bio', None)
         profile_img = request.FILES.get('profile_img', None)
         cover_img = request.FILES.get('cover_img', None)
+        password = request.POST.get('password', None)
+        password2 = request.POST.get('password2', None)
+        password3 = request.POST.get('password3', None)
+        changes = False
 
-        if username is not None:
+        if username and username != user.user.username:
             user.user.username = username
-        if email is not None:
+            changes = True
+        if email and email != user.user.email:
             user.user.email = email
-        if fname is not None:
+            changes = True
+        if fname and fname != user.fname:
             user.fname = fname
-        if bio is not None:
+            changes = True
+        if bio and bio != user.bio:
             user.bio = bio
-        if profile_img is not None:
+            changes = True
+        if profile_img and profile_img != user.profile_img:
             user.profile_img = profile_img
-        if cover_img is not None:
+            changes = True
+        if cover_img and cover_img != user.cover_img:
             user.cover_img = cover_img
+            changes = True
 
-
-        if user.user.check_password(request.POST.get("password", None)):
-            password2 = request.POST.get('password2', None)
-            password3 = request.POST.get('password3', None)
-            if password2 == password3:
+        if password2:
+            if len(password2) < 8:
+                messages.info(request, 'Password Too Short')
+                return redirect('settings')
+            elif password2 == password3:
                 messages.info(request, 'Password Changed')
                 user.user.set_password(password2)
+
             else:
                 messages.info(request, 'Passwords Not Matching')
+                return redirect('settings')
+            changes = True
+            
+        if changes:
+            if not password:
+                messages.info(request, 'Password Required')
+                return redirect('settings')
+
+            if not user.user.check_password(password):
+                messages.info(request, 'Password Incorrect')
                 return redirect('settings')
 
         user.user.save()
         user.save()
         
+        if password2:
+            return redirect('signin')
         return redirect('profile')
 
     return render(request, 'setting.html', {'user_profile': user})
@@ -127,11 +161,12 @@ def settings(request):
 @login_required(login_url='signin')
 def profile(request):
     user = Profile.objects.get(user=request.user)
-    clans = Community.objects.filter(members=request.user).count()
+    clans = Community.objects.filter(members=request.user)
+    n_clans = clans.count()
 
     comments = Comment.objects.filter(user=request.user).count()
     posts = Post.objects.filter(author=request.user).count()
-    return render(request, 'profile.html', {'user_profile': user, "clans": clans, "comments": comments, "posts": posts})
+    return render(request, 'profile.html', {'user_profile': user, "clans": clans, "comments": comments, "posts": posts, "n_clans": n_clans})
 
 @login_required(login_url='signin')
 def myclans(request):
@@ -189,6 +224,9 @@ def update(request, id):
 @login_required(login_url='signin')
 def edit_clan(request, id):
     clan = Community.objects.get(id=id)
+    if request.user not in clan.admins.all():
+        return redirect('index')
+
     return render(request, 'edit_clan.html', {'clan' : clan})
 
 
@@ -199,7 +237,7 @@ def create_post(request):
         description = request.POST.get('content', None)
         id = request.POST.get('clan', None)
         community = Community.objects.get(id=id)
-        post = Post(title=title, description=description, author=request.user, community=community, created=datetime.now(), updated=datetime.now())
+        post = Post(title=title, description=description, author=request.user, community=community)
         post.save()
         return redirect('clan', id=id)
     return render(request, 'create_post.html')
@@ -208,7 +246,7 @@ def create_post(request):
 def create_comment(request, id=None):
     if request.method == 'POST':
         post = Post.objects.get(id_post=id)
-        comment = Comment(content=request.POST.get('content', None), user=request.user, post=post, created_at=datetime.now(), updated_at=datetime.now())
+        comment = Comment(content=request.POST.get('content', None), user=request.user, post=post)
         comment.save()
         return redirect('clan', id=post.community.id)
 
@@ -217,13 +255,28 @@ def create_clan(request):
     if request.method == 'POST':
         name = request.POST.get('name', None)
         description = request.POST.get('content', None)
+        if not name:
+            messages.info(request, 'Name Required')
+            return redirect('create_clan')
+        if Community.objects.filter(name=name).exists():
+            messages.info(request, 'Clan Already Exists')
+            return redirect('create_clan')
+        if not description:
+            messages.info(request, 'Description Required')
+            return redirect('create_clan')
+        community = Community.objects.create(name=name, description=description)
+        community.save()
         communityimg = request.FILES.get('communityimg', None)
         background = request.FILES.get('background', None)
-        community = Community.objects.create(name=name, description=description, communityimg=communityimg, background=background, created=datetime.now(), updated=datetime.now(), private=False)
-        community.save()
+        if communityimg:
+            community.communityimg = communityimg
+        if background:
+            community.background = background
         community.admins.add(request.user)
+        community.members.add(request.user)
         community.save()
         return redirect('clan', id=community.id)
+    return render(request, 'create_clan.html')
 
 @login_required(login_url='signin')
 def c_clan(request):
@@ -231,11 +284,11 @@ def c_clan(request):
 
 @login_required(login_url='signin')
 def delete_clan(request, id=None):
-    community = Community.objects.get(id=id)
-    if request.user == community.admin:
-        community.delete()
-        return redirect('index')
-    return redirect('clan', id=id)
+    clan = Community.objects.get(id=id)
+    if request.user in clan.admins.all():
+        clan.delete()
+        return redirect('myclans')
+    return redirect('/')
 
 @login_required(login_url='signin')
 def delete_post(request, id=None):
@@ -283,17 +336,15 @@ def edit_comment(request, id=None):
 def create_comment_index(request, id=None):
     if request.method == 'POST':
         post = Post.objects.get(id_post=id)
-        comment = Comment(content=request.POST.get('content', None), user=request.user, post=post, created_at=datetime.now(), updated_at=datetime.now())
+        comment = Comment(content=request.POST.get('content', None), user=request.user, post=post)
         comment.save()
         return redirect('index')
-
-
 
 @login_required(login_url='signin')
 def search(request):
 
-    if request.method == 'POST':
-        clan_name = request.POST['search_name']
+    if request.method == 'GET':
+        clan_name = request.GET.get('q', '')
         clan_obj = Community.objects.filter(name__icontains=clan_name)
 
         clans = []

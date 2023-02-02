@@ -40,6 +40,15 @@
                 <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
                     <form action="/edit_clan/c" method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
+                        <div>
+                        <style>
+                            h5 {
+                              color: red;
+                            }
+                          </style>
+                          {% for message in messages %}
+                          <h5>{{message}}</h5>
+                          {% endfor %}
                         <div class="mx-auto text-right">
                             <button
                                 class="bg-purple-500 text-white active:bg-purple-500 font-bold uppercase text-xs px-4 py-3 mt-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"

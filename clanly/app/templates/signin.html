@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <title>Clanly</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="assets/logo_solo.png"> 
+  <link rel="icon" type="image/x-icon" href="assets/logo_solo.png">
   <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.5/dist/flowbite.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
   <link rel="stylesheet" href="https://unpkg.com/flowbite@latest/dist/flowbite.min.css" />
@@ -22,8 +22,7 @@
       data-aos="zoom-in-down" data-aos-delay="100" duration="50"> <img src="../static/images/logo-no-background.png"
         alt="logo">
     </div>
-    <div class=" lg:w-3/12 px-4 mx-auto mt-10" data-aos="fade-up" data-aos-delay="100" duration="500"
-      delay="500">
+    <div class=" lg:w-3/12 px-4 mx-auto mt-10" data-aos="fade-up" data-aos-delay="100" duration="500" delay="500">
       <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
         <div class="rounded-t bg-white mb-0 px-6 py-4">
           <div class="text-center flex justify-between">
@@ -33,7 +32,7 @@
           </div>
         </div>
         <div class="flex-auto px-4 lg:px-10 py-10 pt-0 ">
-           <form action="" method="POST">{% csrf_token %}
+          <form action="" method="POST">{% csrf_token %}
             <div class="mx-auto text-right pt-3">
             </div>
             <div class="flex flex-col">
@@ -57,6 +56,16 @@
                     placeholder="Password">
                 </div>
               </div>
+              <div>
+                <style>
+                  h5 {
+                    color: red;
+                  }
+                </style>
+                {% for message in messages %}
+                <h5>{{message}}</h5>
+                {% endfor %}
+              </div>
               <button
                 class="mt-2 mx-auto bg-purple-800 text-white active:bg-purple-500 font-bold uppercase text-l w-full py-2 rounded shadow-lg hover:bg-purple-800 hover:animate-pulse outline-none focus:outline-none mb-1 ease-linear transition-all duration-150"
                 type="submit">
@@ -65,7 +74,7 @@
             </div>
           </form>
           <div class=" mt-4 mb-0 text-center">
-           <a href="{% url 'signup' %}" class="text-blueGray-600">Sign Up</a>
+            <a href="{% url 'signup' %}" class="text-blueGray-600">Sign Up</a>
           </div>
         </div>
       </div>
