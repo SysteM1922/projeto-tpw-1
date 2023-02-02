@@ -234,13 +234,19 @@ def edit_clan(request, id):
 def create_post(request):
     if request.method == 'POST':
         title = request.POST.get('title', None)
+        if not title:
+            return redirect('index')
         description = request.POST.get('content', None)
+        if not description:
+            return redirect('index')
         id = request.POST.get('clan', None)
+        if not id:
+            return redirect('index')
         community = Community.objects.get(id=id)
         post = Post(title=title, description=description, author=request.user, community=community)
         post.save()
         return redirect('clan', id=id)
-    return render(request, 'create_post.html')
+    return render(request, 'index')
 
 @login_required(login_url='signin')
 def create_comment(request, id=None):
