@@ -12,12 +12,16 @@ from .models import Comment, Community, Post, Profile
 
 # Create your views here.
 
+def all_clans(id):
+    clans = Community.objects.filter(members=id)
+    return clans
+
 @login_required(login_url='signin')
 def index(request):
     clans = Community.objects.filter(members=request.user)
     posts = Post.objects.all()
     comments = Comment.objects.all()
-    return render(request, 'index.html', {'clans': clans, 'posts': posts, 'comments': comments})
+    return render(request, 'index.html', {'clans': clans, 'posts': posts, 'comments': comments, "all_clans": all_clans(request.user)},)
 
 def signup(request):
 
@@ -61,7 +65,7 @@ def signup(request):
             return render(request, 'signup.html')
 
     else:
-        return redirect('/')
+        return redirect('index')
 
 def signin(request):
 
@@ -75,7 +79,7 @@ def signin(request):
 
             if user:
                 auth.login(request, user)
-                return redirect('/')
+                return redirect('index')
             else:
                 messages.info(request, 'Credentials Invalid')
                 return redirect('signin')
@@ -84,7 +88,7 @@ def signin(request):
             return render(request, 'signin.html')
 
     else:
-        return redirect('/')
+        return redirect('index')
 
 @login_required(login_url='signin')
 def logout(request):
@@ -156,7 +160,7 @@ def settings(request):
             return redirect('signin')
         return redirect('profile')
 
-    return render(request, 'setting.html', {'user_profile': user})
+    return render(request, 'setting.html', {'user_profile': user, "all_clans": all_clans(request.user)})
 
 @login_required(login_url='signin')
 def profile(request):
@@ -166,12 +170,13 @@ def profile(request):
 
     comments = Comment.objects.filter(user=request.user).count()
     posts = Post.objects.filter(author=request.user).count()
-    return render(request, 'profile.html', {'user_profile': user, "clans": clans, "comments": comments, "posts": posts, "n_clans": n_clans})
+    return render(request, 'profile.html', {'user_profile': user, "clans": clans, "comments": comments, "posts": posts, "n_clans": n_clans, "all_clans": all_clans(request.user)})
 
 @login_required(login_url='signin')
 def myclans(request):
     clans = Community.objects.filter(admins=request.user)
-    return render(request, 'myclans.html', {"clans":clans})
+
+    return render(request, 'myclans.html', {"clans":clans, "all_clans": all_clans(request.user)})
 
 @login_required(login_url='signin')
 def clan(request, id=None):
@@ -184,7 +189,7 @@ def clan(request, id=None):
     bol = 1
     if request.user in community.members.all():
         bol = 0
-    return render(request, 'clan.html', {"followers": followers, "n_posts": n_posts, "id": id, "clan": community, "posts": posts, "comments": comments, "bol": bol, "user": request.user, "clans": clans})
+    return render(request, 'clan.html', {"followers": followers, "n_posts": n_posts, "id": id, "clan": community, "posts": posts, "comments": comments, "bol": bol, "user": request.user, "clans": clans, "all_clans": all_clans(request.user)})
 
 @login_required(login_url='signin')
 def follow_clan(request, id=None):
@@ -246,7 +251,7 @@ def create_post(request):
         post = Post(title=title, description=description, author=request.user, community=community)
         post.save()
         return redirect('clan', id=id)
-    return render(request, 'index')
+    return render(request, 'index', {'all_clans': all_clans(request.user)})
 
 @login_required(login_url='signin')
 def create_comment(request, id=None):
@@ -294,7 +299,7 @@ def delete_clan(request, id=None):
     if request.user in clan.admins.all():
         clan.delete()
         return redirect('myclans')
-    return redirect('/')
+    return redirect('index')
 
 @login_required(login_url='signin')
 def delete_post(request, id=None):
@@ -364,7 +369,7 @@ def search(request):
             clans_lst.append(clans_)
 
         clans_lst = list(chain(*clans_lst))
-    return render(request, 'search.html', {'clans': clans_lst, 'search': clan_name})
+    return render(request, 'search.html', {'clans': clans_lst, 'search': clan_name, "all_clans": all_clans(request.user)})
 
 
 
