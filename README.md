@@ -3,4 +3,4 @@
 <h2>102442 Daniel Ferreira Martins</h2>
 <h2>103600 Guilherme Costa Antunes</h2>
 <h2>103541 Pedro Miguel Rodrigues Rasinhas</h2>
-<h3>Nota: 17</h3>
+<h3>Nota: 15</h3>
